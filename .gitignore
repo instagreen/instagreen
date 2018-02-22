@@ -1,6 +1,6 @@
 #add custom files here
 client/dist/bundle.js
-
+db/config.js
 # Logs
 logs
 *.log
