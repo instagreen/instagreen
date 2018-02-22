@@ -8,6 +8,8 @@ const path = require('path');
 const port = 3000;
 const app = express();
 
+// hello from Brian test
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/../client/dist')));
