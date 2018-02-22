@@ -1,15 +1,17 @@
-let express = require('express');
-let bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
 // var items = require('../database-mongo');
 
 const port = 3000;
-var app = express();
+const app = express();
 
-// UNCOMMENT FOR REACT
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-app.listen(port, function() {
+app.listen(port, () => {
   console.log(`listening on port ${port}!`);
 });
