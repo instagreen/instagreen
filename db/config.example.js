@@ -1,1 +1,1 @@
-module.exports.password = 'instagreen';
+module.exports.password = '';
