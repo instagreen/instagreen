@@ -1,0 +1,22 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+    - node_modules
+services: 
+  - mysql
+before_install:
+  - mysql -u root -e 'CREATE DATABASE instagreen;'
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON instagreen.* TO 'travis'@'%';"
+
+before_script:
+  - sudo apt-get -qq update
+install:
+  - npm install
+  - npm run build-db
+  # - npm setup:services/oauth-server
+script:
+  - npm run server-dev &
+  - sleep 10
+  - npm run react-dev &
+  - sleep 10
