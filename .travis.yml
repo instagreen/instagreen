@@ -16,7 +16,7 @@ install:
   - npm run build-db
   # - npm setup:services/oauth-server
 script:
-  - npm run server-dev
+  - npm run server-dev &
   - sleep 10
-  - npm run react-dev
+  - npm run react-dev &
   - sleep 10
