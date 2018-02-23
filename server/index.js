@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { router } = require('./instagreenRouter');
+const { router } = require('./resources/instagreenRouter');
 const logger = require('morgan');
 
 const port = 3000;
