@@ -1,5 +1,5 @@
 const { Schema } = require('./schema');
-const { password } = require('./config');
+const { password } = require('./config.example.js');
 const mysql = require('./index');
 
 let knex = require('knex')({
