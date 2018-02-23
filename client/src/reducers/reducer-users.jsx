@@ -1,7 +1,6 @@
-// function that returns part of app responsible for storing users
-// reducer returns list of users
-// event listener, listens for actions
-export default function () {
+// function that returns the part of app that's responsible for storing users
+// reducers return a piece of data
+export default () => {
   return [
     {
       id: 1,
@@ -22,4 +21,4 @@ export default function () {
       thumbnail: 'https://fandomwire.com/wp-content/uploads/2018/02/landscape-1496227992-aquaman-jason-momoa-696x348.jpg',
     },
   ];
-}
+};

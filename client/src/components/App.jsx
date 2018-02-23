@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import UserList from '../containers/user-list.jsx';
 import UserDetail from '../containers/user-detail.jsx';
@@ -9,12 +9,12 @@ class App extends React.Component {
     return (
       <div>
         <h1>UserList</h1>
-        <UserList/>
+        <UserList />
         <hr/>
         <h1>UserDetail</h1>
-        <UserDetail/>
+        <UserDetail />
       </div>
-    )
+    );
   }
 }
 

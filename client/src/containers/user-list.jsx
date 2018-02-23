@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectUser } from '../actions/index.jsx'; 
-class UserList extends Component {
+import selectUser from '../actions/index.jsx'; 
 
+class UserList extends Component {
   createListItems() {
     return this.props.users.map((user) => {
       return (
         <li key={user.id} onClick={() => this.props.selectUser(user)}>
-          {user.first} 
+          {user.first}
         </li>
-      )
-    })
+      );
+    });
   }
   render() {
     return (
@@ -22,15 +22,16 @@ class UserList extends Component {
   }
 }
 // takes app store, passes it in to component as prop
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     users: state.users,
   };
-}
+};
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ selectUser: selectUser }, dispatch);
-}
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({ selectUser }, dispatch);
+  // { selectUser } = { selectUser: selectUser }
+};
 
 // return smart container vs. dumb component
 export default connect(mapStateToProps, matchDispatchToProps)(UserList);
