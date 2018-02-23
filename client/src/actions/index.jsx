@@ -1,0 +1,11 @@
+export const selectUser = (user) => {
+  console.log("you clicked on user", user.first);
+  return {
+    type: 'USER_SELECTED',
+    payload: user,
+  }
+};
+
+// action creator function returns action
+// action: type and payload
+
