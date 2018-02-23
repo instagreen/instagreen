@@ -1,4 +1,4 @@
-const password = require('./config');
+const password = require('./config.example.js');
 const mysql = require('mysql');
 
 module.exports.connection = mysql.createConnection({
