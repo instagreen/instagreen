@@ -1,4 +1,4 @@
-module.exports.controller = {
+const controller = {
   submitFollowRequest: (req, res) => {
     res.status(200).send({ message: 'OK' });
   },
@@ -39,3 +39,5 @@ module.exports.controller = {
     res.status(200).send({ message: 'OK' });
   },
 };
+
+module.exports.controller = controller;
