@@ -38,9 +38,17 @@ const Schema = {
       nullable: false,
       unsigned: false,
     },
+    description: {
+      type: 'string',
+      nullable: false,
+      maxlength: 255,
+    },
+    imgUrl: {
+      type: 'string',
+      nullable: false,
+      maxlength: 255,
+    },
   },
-
-
   comments: {
     id: {
       type: 'increments',
