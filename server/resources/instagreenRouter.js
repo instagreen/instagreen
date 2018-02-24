@@ -13,7 +13,7 @@ router.get('/feed', controller.getAllFollowerPosts);
 
 router.post('/post/like', controller.addLike);
 
-router.post('/comment/:post_id', controller.addNewComment);
+router.post('/post/comment', controller.addNewComment);
 
 router.put('/follow/accept', controller.acceptFollow);
 
