@@ -9,11 +9,11 @@ router.get('/user/:user_id', controller.getUserPosts);
 
 router.get('/explore', controller.getAllPosts);
 
-router.get('/feed', controller.getAllFollowerPosts);
+router.get('/feed/:user_id', controller.getAllFollowerPosts);
 
 router.post('/post/like', controller.addLike);
 
-router.post('/comment/:post_id', controller.addNewComment);
+router.post('/post/comment', controller.addNewComment);
 
 router.put('/follow/accept', controller.acceptFollow);
 

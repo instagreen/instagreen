@@ -1,4 +1,4 @@
-
+const model = require('./model');
 
 const controller = {
   submitFollowRequest: (req, res) => {
@@ -17,8 +17,12 @@ const controller = {
     res.status(200).send({ message: 'OK' });
   },
 
-  getAllFollowerPosts: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+  getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
+    // const user_id = req.body.user_id;
+    const { user_id } = params; // user_id = params.user_id
+    model.getFeed(user_id, (feed) => {
+      res.status(200).send(feed);
+    });
   },
 
   addLike: (req, res) => {
