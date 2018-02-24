@@ -1,5 +1,4 @@
 const model = require('./model.js');
-const db = require('../../db/index');
 
 const controller = {
   submitFollowRequest: (req, res) => {
