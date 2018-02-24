@@ -1,4 +1,4 @@
-const model = require('./model');
+const model = require('./model.js');
 
 const controller = {
   submitFollowRequest: (req, res) => {
