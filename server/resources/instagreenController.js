@@ -2,7 +2,9 @@ const model = require('./model.js');
 
 const controller = {
   submitFollowRequest: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.handleFollowRequest(req.body, (data) => {
+      res.send(data);
+    });
   },
 
   addPost: (req, res) => {
@@ -34,8 +36,8 @@ const controller = {
   },
 
   addNewComment: (req, res) => {
-    model.addCommentToDb(req.body, (thing) => {
-      res.send(thing);
+    model.addCommentToDb(req.body, (comment) => {
+      res.send(comment);
     });
   },
 
