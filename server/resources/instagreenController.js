@@ -6,7 +6,9 @@ const controller = {
   },
 
   addPost: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addPostToDb(req.body, (post) => {
+      res.send(post);
+    });
   },
 
   getUserPosts: (req, res) => {
@@ -26,7 +28,9 @@ const controller = {
   },
 
   addLike: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addLikeToDb(req.body, (rows) => {
+      res.send(rows);
+    });
   },
 
   addNewComment: (req, res) => {
@@ -43,6 +47,13 @@ const controller = {
 
   signup: (req, res) => {
     res.status(200).send({ message: 'OK' });
+  },
+
+  // DEV only
+  test: (req, res) => {
+    model.test(req.body, (thing) => {
+      res.send(thing);
+    });
   },
 };
 

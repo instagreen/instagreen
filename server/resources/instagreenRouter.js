@@ -21,5 +21,8 @@ router.get('/login', controller.login);
 
 router.post('/signup', controller.signup);
 
+// DEV only
+router.all('/test', controller.test);
+
 module.exports.router = router;
 
