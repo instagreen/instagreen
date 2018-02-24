@@ -28,13 +28,15 @@ const controller = {
   },
 
   addLike: (req, res) => {
-    model.addLikeToDb(req.body, (rows) => {
-      res.send(rows);
+    model.handleNewLike(req.body, (thing) => {
+      res.send(thing);
     });
   },
 
   addNewComment: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addCommentToDb(req.body, (thing) => {
+      res.send(thing);
+    });
   },
 
   acceptFollow: (req, res) => {
