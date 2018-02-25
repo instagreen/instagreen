@@ -1,3 +1,4 @@
+const { password } = require('../../db/config.example.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
