@@ -11,10 +11,10 @@ const knex = require('knex')({
 });
 
 // ===========feed
-module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
+module.exports.getFeed = (userId, cb) => { // user_id the owner of the profile
   // find the people I follow
   knex('user_target_relation').where({
-    user_id, // user_id : user_id ES6 style
+    userId, // user_id : user_id ES6 style
     isAccepted: true,
 
   }).select('target_id').then((peopleUserFollows) => {
@@ -61,7 +61,7 @@ module.exports.handleNewLike = (body, callback) => {
     })
     .then((entry) => {
       // if a record in likes table DOES NOT contain user_id and post_id
-      if (!entry.length) {
+      if (entry.length === 0) {
         knex('likes')
           // add a new like record in the likes database
           .insert({
@@ -89,7 +89,7 @@ module.exports.handleFollowRequest = (body, callback) => {
       target_id: body.target_id,
     })
     .then((entry) => {
-      if (!entry.length) {
+      if (entry.length === 0) {
         knex('user_target_relation')
           .insert({
             user_id: body.user_id,
@@ -105,11 +105,23 @@ module.exports.handleFollowRequest = (body, callback) => {
 };
 
 module.exports.handleFollowAccept = (body, callback) => {
-
+  knex('user_target_relation')
+    .where({
+      user_id: body.user_id,
+      target_id: body.target_id,
+    })
+    .update({ isAccepted: true })
+    .then(callback);
 };
 
 module.exports.handleFollowDecline = (body, callback) => {
-
+  knex('user_target_relation')
+    .where({
+      user_id: body.user_id,
+      target_id: body.target_id,
+    })
+    .delete()
+    .then(callback);
 };
 
 module.exports.test = (body, callback) => {

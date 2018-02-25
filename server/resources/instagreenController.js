@@ -23,8 +23,8 @@ const controller = {
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
     // const user_id = req.body.user_id;
-    const { user_id } = params; // user_id = params.user_id
-    model.getFeed(user_id, (feed) => {
+    // const { user_id } = params; // user_id = params.user_id
+    model.getFeed(params.user_id, (feed) => {
       res.status(200).send(feed);
     });
   },
@@ -42,7 +42,15 @@ const controller = {
   },
 
   acceptFollow: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.handleFollowAccept(req.body, (item) => {
+      res.send(JSON.stringify(item));
+    });
+  },
+
+  declineFollow: (req, res) => {
+    model.handleFollowDecline(req.body, (item) => {
+      res.send(JSON.stringify(item));
+    });
   },
 
   login: (req, res) => {
