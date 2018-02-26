@@ -4,7 +4,7 @@ const knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password,
     database: 'instagreen',
     charset: 'utf8',
   },
@@ -15,7 +15,7 @@ const knex = require('knex')({
 module.exports.getFeed = (userId, cb) => { // user_id the owner of the profile
   // find the people I follow
   knex('user_target_relation').where({
-    userId, // user_id : user_id ES6 style
+    user_id: userId, // user_id : user_id ES6 style
     isAccepted: true,
 
   }).select('target_id').then((peopleUserFollows) => {
@@ -75,7 +75,7 @@ module.exports.handleNewLike = (body, callback) => {
         // increment likes_count of the post in the posts table
         knex('posts').where({ id: body.post_id })
           .increment('likes_count', 1)
-          .then(() => console.log('Testing'));
+          .then(() => console.error('Testing'));
       } else {
         callback({ message: 'user already liked' });
       }
