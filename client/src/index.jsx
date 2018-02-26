@@ -12,7 +12,7 @@ import App from './components/app.jsx';
 ReactDOM.render(
   // got rid of provider cause we're sticking with the vanilla react at the moment
   // <Provider store={store}>
-    <App />,
+  <App />,
   // </Provider>,
   document.getElementById('app'),
 );

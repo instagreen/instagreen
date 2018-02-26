@@ -1,12 +1,16 @@
-const model = require('./model');
+const model = require('./model.js');
 
 const controller = {
   submitFollowRequest: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.handleFollowRequest(req.body, (data) => {
+      res.send(data);
+    });
   },
 
   addPost: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addPostToDb(req.body, (post) => {
+      res.send(post);
+    });
   },
 
   getUserPosts: (req, res) => {
@@ -19,22 +23,34 @@ const controller = {
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
     // const user_id = req.body.user_id;
-    const { user_id } = params; // user_id = params.user_id
-    model.getFeed(user_id, (feed) => {
+    // const { user_id } = params; // user_id = params.user_id
+    model.getFeed(params.user_id, (feed) => {
       res.status(200).send(feed);
     });
   },
 
   addLike: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.handleNewLike(req.body, (thing) => {
+      res.send(thing);
+    });
   },
 
   addNewComment: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addCommentToDb(req.body, (comment) => {
+      res.send(comment);
+    });
   },
 
   acceptFollow: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.handleFollowAccept(req.body, (item) => {
+      res.send(JSON.stringify(item));
+    });
+  },
+
+  declineFollow: (req, res) => {
+    model.handleFollowDecline(req.body, (item) => {
+      res.send(JSON.stringify(item));
+    });
   },
 
   login: (req, res) => {
@@ -43,6 +59,13 @@ const controller = {
 
   signup: (req, res) => {
     res.status(200).send({ message: 'OK' });
+  },
+
+  // DEV only
+  test: (req, res) => {
+    model.test(req.body, (thing) => {
+      res.send(thing);
+    });
   },
 };
 

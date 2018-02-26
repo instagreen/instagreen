@@ -1,6 +1,8 @@
 #add custom files here
 client/dist/bundle.js
 db/config.js
+server/resources/dbSeeder.js
+
 # Logs
 logs
 *.log

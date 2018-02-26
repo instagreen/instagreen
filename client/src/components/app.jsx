@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feed: [],
+      feed: ['test', 'test'],
       user_id: 0,
     };
   }
@@ -28,7 +28,8 @@ class App extends React.Component {
       <div>
         {/* navbar yet to be made */}
         {/* <Navbar /> */}
-        <Feed feed={this.state.feed} />
+        <h1>Hello from app.jsx</h1>
+        <Feed user_id={this.state.user_id} feed={this.state.feed} />
 
       </div>
     );
