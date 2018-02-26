@@ -15,6 +15,7 @@ router.get('/feed/:user_id', controller.getAllFollowerPosts);
 
 router.post('/post/like', controller.addLike);
 
+router.get('/post/comment/:post_id', controller.getCommentsOfPost);
 router.post('/post/comment', controller.addNewComment);
 
 router.post('/login', controller.login);

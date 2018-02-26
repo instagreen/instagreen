@@ -166,6 +166,14 @@ module.exports.fetchUser = (body, callback) => {
       password: body.password,
     })
     .then(callback);
+};ß
+
+module.exports.handleGetAllComments = (params, callback) => {
+  knex('comments')
+    .where({
+      post_id: params.post_id,
+    })
+    .then(callback);
 };
 
 module.exports.sessionChecker = (body, callback) => {
