@@ -12,10 +12,10 @@ const knex = require('knex')({
 });
 
 // ===========feed
-module.exports.getFeed = (userId, cb) => { // user_id the owner of the profile
+module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   // find the people I follow
   knex('user_target_relation').where({
-    user_id: userId, // user_id : user_id ES6 style
+    user_id, // user_id : user_id ES6 style
     isAccepted: true,
 
   }).select('target_id').then((peopleUserFollows) => {
@@ -27,6 +27,18 @@ module.exports.getFeed = (userId, cb) => { // user_id the owner of the profile
         cb(feed);
       });
   });
+};
+
+module.exports.getPersonalPosts = (user_id, cb) => { // user_id the owner of the profile
+  // find the posts that have the user_id as the owner
+  knex('posts')
+    .where({user_id})
+    .select('*')
+    .then((personalPosts) => {
+      console.log('here are the personal posts', personalPosts);
+      // hand the personal posts to callback to send them to client
+      cb(personalPosts);
+    });
 };
 
 // Put all db queries here
