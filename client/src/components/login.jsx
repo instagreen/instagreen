@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import App from './app.jsx';
-import SignUp from './signup.jsx';
 
 class LogIn extends React.Component {
   constructor() {
@@ -11,6 +10,7 @@ class LogIn extends React.Component {
       username: '',
       password: '',
       match: false,
+      currentComponent: 'login',
     };
   }
   setUsername(e) {
@@ -23,13 +23,11 @@ class LogIn extends React.Component {
     console.log('state password', this.state.password);
   }
 
-  submitForm() {
-    let username = this.state.username;
-    let password = this.state.password;
+  doLogIn() {
+    const { username, password } = this.state;
     axios.post('/instagreen/login', { username, password }).then((response) => {
-      console.log('response', response);
       if (response.data.length === 0) {
-        console.log("try again!!!");
+        console.log('Invalid username/password combination !!!');
         this.setState({ match: false });
       } else {
         this.setState({ match: true });
@@ -37,18 +35,44 @@ class LogIn extends React.Component {
     });
   }
 
+  doSignUp() {
+    axios.post('/instagreen/signup', {
+      username: this.state.username,
+      password: this.state.password,
+    }).then(response => console.log('--response', response));
+  }
+
+  handleSignUpClick() {
+    this.setState({ currentComponent: 'signup' });
+  }
+
+  handleLogInClick() {
+    this.setState({ currentComponent: 'login' });
+  }
+
   render() {
     if (this.state.match === true) {
       return <App />;
-    } else {
+    }
+    if (this.state.currentComponent === 'login') {
       return (
-        <div>hello from Log In
+        <div>
           <input type="text" value={this.state.username} onChange={e => this.setUsername(e)} />
           <input type="text" value={this.state.password} onChange={e => this.setPassword(e)} />
-          <button onClick={() => this.submitForm()}>LOG IN</button>
+          <button onClick={() => this.doLogIn()}>LOG IN</button>
           <hr />
-          Dont't Have An Account?
-          <SignUp />
+          Dont have an account? <a href='#' onClick={() => {this.handleSignUpClick()}}> Sign Up </a>
+        </div>
+      );
+    }
+    if (this.state.currentComponent === 'signup') {
+      return (
+        <div>
+          <input type="text" value={this.state.username} onChange={e => this.setUsername(e)} />
+          <input type="text" value={this.state.password} onChange={e => this.setPassword(e)} />
+          <button onClick={() => this.doSignUp()}>SIGN UP</button>
+          <hr />
+           Already have an account? <a href='#' onClick={() => {this.handleLogInClick()}}> Log In </a>
         </div>
       );
     }
