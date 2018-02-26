@@ -21,7 +21,12 @@ const insertDummyDataForFeed = () => {
       username: randomUserName, password: '', follower_count: 0, following_count: 0,
     })
       .then(() => {
-        knex('posts').insert({ user_id: index + 1, likes_count: 0 }).then(() => { // insert data in posts table
+        knex('posts').insert({ 
+          user_id: index + 1,
+          likes_count: 0,
+          description: `hi ${index}`,
+          imgUrl: `img ${index}`,
+        }).then(() => { // insert data in posts table
         });
       })
       .then(() => { // insert data in user_target_relation table
@@ -33,4 +38,18 @@ const insertDummyDataForFeed = () => {
   }
 };
 
+const insertDummyDataForProfile = () => {
+  for (let index = 0; index < 3; index += 1) {
+    knex('posts').insert({
+      likes_count : index + 1,
+      description: `hi ${index}`,
+      imgUrl: `img ${index}`,
+      user_id: 1,
+    }).then(() => {
+      console.log( 'done inserting posts');
+    });
+  }
+};
+
 insertDummyDataForFeed();
+insertDummyDataForProfile();

@@ -13,10 +13,14 @@ const controller = {
     });
   },
 
-  getUserPosts: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+  getUserPosts: ({ params }, res) => { // req.params = { params }
+    // const user_id = req.body.user_id;
+    const { user_id } = params; // user_id = params.user_id
+    model.getPersonalPosts(user_id, (personalPosts) => {
+      res.status(200).send(personalPosts);
+    });
   },
-
+  
   getAllPosts: (req, res) => {
     res.status(200).send({ message: 'OK' });
   },
