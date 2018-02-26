@@ -54,11 +54,17 @@ const controller = {
   },
 
   login: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.fetchUser(req.body, (user) => {
+      console.log('---user', user);
+      req.session.user = req.body.username;
+      res.send(user);
+    });
   },
 
   signup: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addUserToDb(req.body, (post) => {
+      res.send(post);
+    });
   },
 
   // DEV only
@@ -66,6 +72,14 @@ const controller = {
     model.test(req.body, (thing) => {
       res.send(thing);
     });
+  },
+
+  curr: (req, res) => {
+    if (req.session.user) {
+      res.send('user exists');
+    } else {
+      res.send('no user');
+    }
   },
 };
 
