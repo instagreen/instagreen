@@ -184,6 +184,14 @@ module.exports.sessionChecker = (body, callback) => {
   }
 };
 
+module.exports.handleGetUserName = (params, callback) => {
+  knex('users')
+    .where({
+      id: params.user_id,
+    })
+    .then(callback);
+};
+
 module.exports.test = (body, callback) => {
   // WRONG
   callback(body);
