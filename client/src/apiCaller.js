@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const SERVER = 'http://localhost:3000/instagreen';
 
 const APICaller = {
