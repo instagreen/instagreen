@@ -29,6 +29,13 @@ const controller = {
     });
   },
 
+  getCommentsOfPost: (req, res) => {
+    console.log('req.params', req.params);
+    model.handleGetAllComments(req.params, (comments) => {
+      res.status(200).send(comments);
+    });
+  },
+
   addLike: (req, res) => {
     model.handleNewLike(req.body, (thing) => {
       res.send(thing);

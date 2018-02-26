@@ -125,6 +125,14 @@ module.exports.handleFollowDecline = (body, callback) => {
     .then(callback);
 };
 
+module.exports.handleGetAllComments = (params, callback) => {
+  knex('comments')
+    .where({
+      post_id: params.post_id,
+    })
+    .then(callback);
+};
+
 module.exports.test = (body, callback) => {
   // WRONG
   callback(body);
