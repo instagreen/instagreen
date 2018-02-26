@@ -16,7 +16,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 10000, // cookie set to 10 seconds for testing
+    expires: 60000, // cookie set to 60 seconds for testing
   },
 }));
 
