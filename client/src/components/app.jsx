@@ -12,19 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       feed: [],
-      // changed user_id to user cause we need to have the profile picture and bio passed to
-      // profile as appose to making another api call to get them
-      // user_id: 0,
-      user: null,
-      // user: {
-      //   username: 'Arnold',
-      //   profile_picture: 'http://cdn.wegotthiscovered.com/wp-content/uploads/terminator-5-schwarzenegger-img.jpg',
-      //   bio: 'Are we in antartica? im freezing to death',
-      //   followers_count: 200,
-      //   following_count: 150,
-
-      // },
-      personalPosts : [],
+      user_id: 0,
     };
   }
   componentDidMount() {
