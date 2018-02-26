@@ -64,6 +64,12 @@ const controller = {
     });
   },
 
+  getUserName: (req, res) => {
+    model.handleGetUserName(req.params, (username) => {
+      res.status(200).send(username);
+    });
+  },
+
   login: (req, res) => {
     res.status(200).send({ message: 'OK' });
   },

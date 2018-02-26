@@ -5,6 +5,8 @@ router.post('/follow', controller.submitFollowRequest);
 router.put('/follow', controller.acceptFollow);
 router.delete('/follow', controller.declineFollow);
 
+router.get('/username/:user_id', controller.getUserName);
+
 router.post('/post', controller.addPost);
 
 router.get('/user/:user_id', controller.getUserPosts);
