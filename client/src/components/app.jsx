@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feed: ['test', 'test'],
+      feed: [],
       user_id: 0,
     };
   }
