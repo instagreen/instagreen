@@ -55,7 +55,6 @@ const controller = {
 
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
-      console.log('---user', user);
       req.session.user = req.body.username;
       res.send(user);
     });
@@ -67,19 +66,18 @@ const controller = {
     });
   },
 
+  verify: (req, res) => {
+    model.sessionChecker(req.session, (response) => {
+      console.log('---thing----', response);
+      res.send(response);
+    });
+  },
+
   // DEV only
   test: (req, res) => {
     model.test(req.body, (thing) => {
       res.send(thing);
     });
-  },
-
-  curr: (req, res) => {
-    if (req.session.user) {
-      res.send('user exists');
-    } else {
-      res.send('no user');
-    }
   },
 };
 

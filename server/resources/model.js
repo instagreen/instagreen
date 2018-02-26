@@ -156,6 +156,14 @@ module.exports.fetchUser = (body, callback) => {
     .then(callback);
 };
 
+module.exports.sessionChecker = (body, callback) => {
+  if (body.user) {
+    callback('valid user session');
+  } else {
+    callback('invalid user session');
+  }
+};
+
 module.exports.test = (body, callback) => {
   // WRONG
   callback(body);

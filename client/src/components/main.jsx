@@ -13,9 +13,9 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/instagreen/curr').then((response) => {
+    axios.get('/instagreen/verify').then((response) => {
       console.log('---response', response);
-      if (response.data === 'no user') {
+      if (response.data === 'invalid user session') {
         router.setRoute('login');
       } else {
         this.setState({ isLoading: false });
@@ -26,7 +26,7 @@ class Main extends React.Component {
     if (this.state.isLoading) {
       return (
         <div>
-         Loading....
+         Loading...
         </div>
       );
     }

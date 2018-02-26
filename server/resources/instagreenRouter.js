@@ -21,9 +21,11 @@ router.post('/login', controller.login);
 
 router.post('/signup', controller.signup);
 
+router.get('/verify', controller.verify);
+
 // DEV only
 router.all('/test', controller.test);
-router.get('/curr', controller.curr);
+
 
 // Validation middleware test
 // const sessionValidator = (req, res, next) => {

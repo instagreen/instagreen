@@ -2,8 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { router } = require('./resources/instagreenRouter');
 const logger = require('morgan');
+const { router } = require('./resources/instagreenRouter');
 
 const port = 3000;
 const app = express();
@@ -16,14 +16,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 10000,
+    expires: 10000, // cookie set to 10 seconds for testing
   },
 }));
-
-// app.get('/', sessionChecker, (req, res) => {
-//   res.send('go back to login');
-// })
-
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use('/instagreen', router);
