@@ -16,12 +16,10 @@ class LogIn extends React.Component {
   }
   setUsername(e) {
     this.setState({ username: e.target.value });
-    console.log('state username', this.state.username);
   }
 
   setPassword(e) {
     this.setState({ password: e.target.value });
-    console.log('state password', this.state.password);
   }
 
   doLogIn() {

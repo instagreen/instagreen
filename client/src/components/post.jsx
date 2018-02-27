@@ -67,7 +67,7 @@ class Post extends React.Component {
           <img alt="test" src={this.props.post.imgUrl} height="250" width="250" />
         </div>
         <div className="post-component-description">
-          <em><strong><a href="#">{this.state.author}: </a></strong>{this.props.post.description}</em>
+          <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em>
         </div>
         <div className="post-component-comment-section">
           <Comments commentList={this.state.commentList} />
