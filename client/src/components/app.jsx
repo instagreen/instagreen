@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import UserList from '../containers/user-list.jsx';
 import UserDetail from '../containers/user-detail.jsx';
 import Feed from './feed.jsx';
-import Profile from './profile.jsx';
 import apiCaller from './../apiCaller.js';
+import Profile from './profile.jsx';
 
 class App extends React.Component {
   constructor(props) {

@@ -20,7 +20,7 @@ const controller = {
       res.status(200).send(personalPosts);
     });
   },
-  
+
   getAllPosts: (req, res) => {
     res.status(200).send({ message: 'OK' });
   },
