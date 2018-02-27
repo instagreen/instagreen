@@ -4,23 +4,30 @@ import ReactDOM from 'react-dom';
 import UserList from '../containers/user-list.jsx';
 import UserDetail from '../containers/user-detail.jsx';
 import Feed from './feed.jsx';
-import { getFeed } from './../apiCaller.js';
 import Profile from './profile.jsx';
+import apiCaller from './../apiCaller.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       feed: [],
-      user_id: 0,
+      user_id: 1,
+      username: '',
     };
   }
   componentDidMount() {
-    // uncomment the following function to get the feed
+    apiCaller.getUserInfo(this.state.user_id, (userInfo) => {
+      this.setState({
+        username: userInfo.data[0].username,
+      });
+    });
 
-    // getFeed(this.state.user_id, (feed) => {
-    //   this.setState({ feed: [...this.state.feed, ...feed]});
-    // });
+    apiCaller.getFeed(this.state.user_id, (response) => {
+      this.setState({
+        feed: response.data,
+      });
+    });
   }
 
 
@@ -29,9 +36,9 @@ class App extends React.Component {
       <div>
         {/* navbar yet to be made */}
         {/* <Navbar /> */}
-        <h1>Hello from app.jsx</h1>
-        <Feed user_id={this.state.user_id} feed={this.state.feed} />
-        {/* <Profile personalPosts={this.state.personalPosts} user={this.state.user} /> */}
+        <h1>Hello, {this.state.username}</h1>
+        <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
+
       </div>
     );
   }
