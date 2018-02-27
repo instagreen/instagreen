@@ -6,7 +6,6 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFollowing: false,
       commentList: [],
       comment: '',
       author: '',
@@ -16,30 +15,16 @@ class Post extends React.Component {
   }
 
   componentDidMount() {
-    let newCommentList = [];
-
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
       this.setState({
         author: response.data[0].username,
       });
-      apiCaller.getComments(this.props.post.id, (response) => {
-        
-        response.data.forEach((comment) => {
-          apiCaller.getUserInfo(comment.user_id, (userInfo) => {
-            let entry = Object.assign({}, comment);
-            entry.username = userInfo.data[0].username;
-            newCommentList.push(entry);
-          });
-        });
+    });
+    apiCaller.getComments(this.props.post.id, (response) => {
+      this.setState({
+        commentList: response.data,
       });
     });
-
-    setTimeout(() => {
-      console.log(newCommentList);
-      this.setState({
-        commentList: newCommentList,
-      });
-    }, 100);
   }
 
   handleChange(e) {
@@ -72,11 +57,10 @@ class Post extends React.Component {
             onChange={this.handleChange}
             onKeyDown={this.handleEnter}
             name="comment"
-            placeholder="Write a comment..."
-          />
+            placeholder="Write a comment..." />
         </div>
         <div className="post-component-action-buttons">
-          {this.state.isFollowing ? null : <button>Follow</button>}
+          <button>Follow</button>
           <button>Like</button>
         </div>
       </div>

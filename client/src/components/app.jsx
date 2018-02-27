@@ -24,7 +24,6 @@ class App extends React.Component {
     });
 
     apiCaller.getFeed(this.state.user_id, (response) => {
-      console.log('getFeed');
       this.setState({
         feed: response.data,
       });
