@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       feed: [],
-      user_id: 1,
+      user_id: this.props.user_id,
       username: '',
     };
   }
@@ -20,6 +20,7 @@ class App extends React.Component {
     apiCaller.getUserInfo(this.state.user_id, (userInfo) => {
       this.setState({
         username: userInfo.data[0].username,
+        user_id: userInfo.data[0].id,
       });
     });
 
