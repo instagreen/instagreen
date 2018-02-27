@@ -16,18 +16,30 @@ class Post extends React.Component {
   }
 
   componentDidMount() {
+    let newCommentList = [];
+
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
       this.setState({
         author: response.data[0].username,
       });
-    });
-    apiCaller.getComments(this.props.post.id, (response) => {
-      this.setState({
-        commentList: response.data,
+      apiCaller.getComments(this.props.post.id, (response) => {
+        
+        response.data.forEach((comment) => {
+          apiCaller.getUserInfo(comment.user_id, (userInfo) => {
+            let entry = Object.assign({}, comment);
+            entry.username = userInfo.data[0].username;
+            newCommentList.push(entry);
+          });
+        });
       });
     });
 
-    
+    setTimeout(() => {
+      console.log(newCommentList);
+      this.setState({
+        commentList: newCommentList,
+      });
+    }, 100);
   }
 
   handleChange(e) {
