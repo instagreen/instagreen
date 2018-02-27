@@ -13,32 +13,17 @@ class Post extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.renderComments = this.renderComments.bind(this);
   }
 
   componentDidMount() {
-    let newCommentList = [];
-
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
       this.setState({
         author: response.data[0].username,
       });
-      apiCaller.getComments(this.props.post.id, (response) => {
-        response.data.forEach((comment) => {
-          apiCaller.getUserInfo(comment.user_id, (userInfo) => {
-            let entry = Object.assign({}, comment);
-            entry.username = userInfo.data[0].username;
-            newCommentList.push(entry);
-          });
-        });
-      });
     });
 
-    setTimeout(() => {
-      console.log(newCommentList);
-      this.setState({
-        commentList: newCommentList,
-      });
-    }, 100);
+    this.renderComments();
   }
 
   handleChange(e) {
@@ -49,8 +34,30 @@ class Post extends React.Component {
 
   handleEnter(e) {
     if (e.key === 'Enter') {
-      console.log(this.state.comment);
+      //TODO: ADD TO DB
+      apiCaller.handlePostCommentToDb(this.state.comment, this.props.user_id, this.props.post.id, (comment) => {
+        this.renderComments();
+      });
     }
+  }
+
+  renderComments() {
+    console.log('rendering comments!')
+    const newCommentList = [];
+    apiCaller.getComments(this.props.post.id, (response) => {
+      response.data.forEach((comment) => {
+        apiCaller.getUserInfo(comment.user_id, (userInfo) => {
+          let entry = Object.assign({}, comment);
+          entry.username = userInfo.data[0].username;
+          newCommentList.push(entry);
+        });
+      });
+    });
+    setTimeout(() => {
+      this.setState({
+        commentList: newCommentList,
+      });
+    }, 100);
   }
 
   render() {

@@ -3,7 +3,7 @@ import CommentEntry from './commentEntry.jsx';
 
 const Comments = props => (
   <ul>
-    {props.commentList.map(comment => <CommentEntry comment={comment} />)}
+    {props.commentList.map(comment => <CommentEntry key={comment.id} comment={comment} />)}
   </ul>
 );
 
