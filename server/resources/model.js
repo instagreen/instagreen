@@ -166,7 +166,7 @@ module.exports.fetchUser = (body, callback) => {
       password: body.password,
     })
     .then(callback);
-};ß
+};
 
 module.exports.handleGetAllComments = (params, callback) => {
   knex('comments')

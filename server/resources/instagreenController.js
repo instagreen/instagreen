@@ -26,8 +26,6 @@ const controller = {
   },
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
-    // const user_id = req.body.user_id;
-    // const { user_id } = params; // user_id = params.user_id
     model.getFeed(params.user_id, (feed) => {
       res.status(200).send(feed);
     });

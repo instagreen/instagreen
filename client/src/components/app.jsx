@@ -24,6 +24,7 @@ class App extends React.Component {
     });
 
     apiCaller.getFeed(this.state.user_id, (response) => {
+      console.log('getFeed');
       this.setState({
         feed: response.data,
       });
@@ -36,8 +37,6 @@ class App extends React.Component {
       <div>
         {/* navbar yet to be made */}
         {/* <Navbar /> */}
-        <h1>Hello, {this.state.username}</h1>
-        <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
         <h1>Hello, {this.state.username}</h1>
         <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
       </div>

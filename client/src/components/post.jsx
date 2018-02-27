@@ -6,6 +6,7 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFollowing: false,
       commentList: [],
       comment: '',
       author: '',
@@ -25,6 +26,8 @@ class Post extends React.Component {
         commentList: response.data,
       });
     });
+
+    
   }
 
   handleChange(e) {
@@ -57,10 +60,11 @@ class Post extends React.Component {
             onChange={this.handleChange}
             onKeyDown={this.handleEnter}
             name="comment"
-            placeholder="Write a comment..." />
+            placeholder="Write a comment..."
+          />
         </div>
         <div className="post-component-action-buttons">
-          <button>Follow</button>
+          {this.state.isFollowing ? null : <button>Follow</button>}
           <button>Like</button>
         </div>
       </div>
