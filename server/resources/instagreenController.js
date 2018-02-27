@@ -58,11 +58,23 @@ const controller = {
   },
 
   login: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.fetchUser(req.body, (user) => {
+      req.session.user = req.body.username;
+      res.send(user);
+    });
   },
 
   signup: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.addUserToDb(req.body, (post) => {
+      res.send(post);
+    });
+  },
+
+  verify: (req, res) => {
+    model.sessionChecker(req.session, (response) => {
+      console.log('---thing----', response);
+      res.send(response);
+    });
   },
 
   // DEV only

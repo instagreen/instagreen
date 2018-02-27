@@ -137,6 +137,45 @@ module.exports.handleFollowDecline = (body, callback) => {
     .then(callback);
 };
 
+module.exports.addUserToDb = (body, callback) => {
+  knex('users').select()
+    .where({
+      username: body.username,
+    })
+    .then((response) => {
+      if (response.length === 0) {
+        knex('users')
+          .insert({
+            username: body.username,
+            password: body.password,
+            follower_count: 0,
+            following_count: 0,
+          })
+          .then(id => knex('users').select().where('id', id))
+          .then(callback);
+      } else {
+        callback('ALREADY TAKEN');
+      }
+    });
+};
+
+module.exports.fetchUser = (body, callback) => {
+  knex('users').select()
+    .where({
+      username: body.username,
+      password: body.password,
+    })
+    .then(callback);
+};
+
+module.exports.sessionChecker = (body, callback) => {
+  if (body.user) {
+    callback('valid user session');
+  } else {
+    callback('invalid user session');
+  }
+};
+
 module.exports.test = (body, callback) => {
   // WRONG
   callback(body);

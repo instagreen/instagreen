@@ -1,8 +1,9 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { router } = require('./resources/instagreenRouter');
 const logger = require('morgan');
+const { router } = require('./resources/instagreenRouter');
 
 const port = 3000;
 const app = express();
@@ -10,6 +11,15 @@ const app = express();
 app.use(logger('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'packyourbags',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 60000, // cookie set to 60 seconds for testing
+  },
+}));
+
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use('/instagreen', router);
 

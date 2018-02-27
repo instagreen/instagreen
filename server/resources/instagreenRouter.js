@@ -17,12 +17,24 @@ router.post('/post/like', controller.addLike);
 
 router.post('/post/comment', controller.addNewComment);
 
-router.get('/login', controller.login);
+router.post('/login', controller.login);
 
 router.post('/signup', controller.signup);
 
+router.get('/verify', controller.verify);
+
 // DEV only
 router.all('/test', controller.test);
+
+
+// Validation middleware test
+// const sessionValidator = (req, res, next) => {
+//   if (!req.session.user) {
+//     res.send('must be logged in');
+//   } else {
+//     next();
+//   }
+// };
 
 module.exports.router = router;
 
