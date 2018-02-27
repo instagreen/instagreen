@@ -41,6 +41,20 @@ const apiCaller = {
         console.log(`Error while trying to get the personal posts -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
+
+  handlePostCommentToDb: (commentText, user_id, post_id, cb) => {
+    axios.post(`${SERVER}/post/comment`, {
+      text: commentText,
+      user_id,
+      post_id,
+    })
+      .then((comment) => {
+        cb(comment);
+      })
+      .catch((error) => {
+        console.log(`Error while trying to post new comment -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
 };
 
 export default apiCaller;
