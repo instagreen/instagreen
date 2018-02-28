@@ -34,7 +34,7 @@ class App extends React.Component {
 
 
   render() {
-    console.log('PROPS USER ID',this.props.user_id);
+    console.log('---PROPS.USER_ID from APP!!!---', this.props.user_id);
     return (
       <div>
         <NavBar />
