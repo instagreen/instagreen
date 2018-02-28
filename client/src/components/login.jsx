@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import App from './app.jsx';
+import Main from './main.jsx';
 
 class LogIn extends React.Component {
   constructor() {
@@ -9,7 +9,6 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      user_id: null,
       match: false,
       currentComponent: 'login',
     };
@@ -26,11 +25,11 @@ class LogIn extends React.Component {
     const { username, password } = this.state;
     axios.post('/instagreen/login', { username, password }).then((response) => {
       if (response.data.length === 0) {
-        console.log('Invalid username/password combination !!!');
+        console.log('Invalid username/password combination !!!, response.data', response.data);
         this.setState({ match: false });
       } else {
         console.log('Login successful: ', response.data);
-        this.setState({ match: true, user_id: response.data[0].id });
+        this.setState({ match: true });
       }
     });
   }
@@ -52,27 +51,39 @@ class LogIn extends React.Component {
 
   render() {
     if (this.state.match === true) {
-      return <App user_id={this.state.user_id} />;
+      return <Main />;
     }
     if (this.state.currentComponent === 'login') {
       return (
-        <div>
-          <input type="text" value={this.state.username} onChange={e => this.setUsername(e)} />
-          <input type="text" value={this.state.password} onChange={e => this.setPassword(e)} />
-          <button onClick={() => this.doLogIn()}>LOG IN</button>
-          <hr />
-          Dont have an account? <a href='#' onClick={() => {this.handleSignUpClick()}}> Sign Up </a>
+        <div id="parent" align="center">
+          <div id="header">
+            <h2>Instagreen</h2>
+          </div>
+          <div>
+            <input className="input_field" type="text" placeholder="Username" value={this.state.username} onChange={e => this.setUsername(e)} />
+            <input className="input_field" type="text" placeholder="Password" value={this.state.password} onChange={e => this.setPassword(e)} />
+            <button className="input_field" onClick={() => this.doLogIn()}>Log In</button>
+          </div>
+          <div id="redirect_html">
+            Don't have an account? <a href="#" onClick={() => { this.handleSignUpClick(); }}> Sign Up </a>
+          </div>
         </div>
       );
     }
     if (this.state.currentComponent === 'signup') {
       return (
-        <div>
-          <input type="text" value={this.state.username} onChange={e => this.setUsername(e)} />
-          <input type="text" value={this.state.password} onChange={e => this.setPassword(e)} />
-          <button onClick={() => this.doSignUp()}>SIGN UP</button>
-          <hr />
-           Already have an account? <a href='#' onClick={() => {this.handleLogInClick()}}> Log In </a>
+        <div id="parent" align="center">
+          <div id="header">
+            <h2>Instagreen</h2>
+          </div>
+          <div>
+            <input className="input_field" type="text" placeholder="Username" value={this.state.username} onChange={e => this.setUsername(e)} />
+            <input className="input_field" type="text" placeholder="Password" value={this.state.password} onChange={e => this.setPassword(e)} />
+            <button className="input_field" onClick={() => this.doSignUp()}>Sign Up</button>
+          </div>
+          <div id="redirect_html">
+            Have an account? <a href="#" onClick={() => { this.handleLogInClick(); }}> Log In </a>
+          </div>
         </div>
       );
     }
@@ -80,3 +91,7 @@ class LogIn extends React.Component {
 }
 
 export default LogIn;
+
+// Background styling for later
+// 'http://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Misty-Nature-Forest-Fog-Wallpaper-PIC-WPB004382.jpg'
+// https://facebook.github.io/react-native/docs/image.html#background-image-via-nesting

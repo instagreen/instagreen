@@ -82,8 +82,14 @@ const controller = {
   },
 
   verify: (req, res) => {
-    model.sessionChecker(req.session, (response) => {
-      console.log('---thing----', response);
+    model.checkSession(req.session, (response) => {
+      res.send(response);
+    });
+  },
+
+  logout: (req, res) => {
+    model.destroySession(req.session, (response) => {
+      console.log('---response----', response);
       res.send(response);
     });
   },

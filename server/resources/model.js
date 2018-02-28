@@ -176,9 +176,17 @@ module.exports.handleGetAllComments = (params, callback) => {
     .then(callback);
 };
 
-module.exports.sessionChecker = (body, callback) => {
+module.exports.checkSession = (body, callback) => {
   if (body.user) {
-    callback('valid user session');
+    knex('users').select()
+    .where({
+      username: body.user,
+    })
+    .then(response => {
+      console.log('response', response); 
+      callback(response);
+    });
+    // callback('valid user session');
   } else {
     callback('invalid user session');
   }
@@ -190,6 +198,15 @@ module.exports.handleGetUserName = (params, callback) => {
       id: params.user_id,
     })
     .then(callback);
+};
+
+module.exports.destroySession = (body, callback) => {
+  if (body) {
+    body.destroy();
+    callback('destroyed');
+  } else {
+    callback('no body');
+  }
 };
 
 module.exports.test = (body, callback) => {

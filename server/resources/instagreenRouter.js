@@ -26,6 +26,8 @@ router.post('/signup', controller.signup);
 
 router.get('/verify', controller.verify);
 
+router.get('/logout', controller.logout);
+
 // DEV only
 router.all('/test', controller.test);
 

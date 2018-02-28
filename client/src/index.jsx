@@ -1,12 +1,17 @@
 import Main from './components/main.jsx';
 import App from './components/app.jsx';
 import LogIn from './components/login.jsx';
+import Profile from './components/profile.jsx';
+import Post from './components/post.jsx';
 import router from './clientRouter.jsx';
 
 // *** please refer to ./clientRouter.jsx for dynamic component rendering
 router.setup({
   main: Main,
   app: App,
+  // explore: Explore,
+  profile: Profile,
+  post: Post,
   login: LogIn,
 });
 
