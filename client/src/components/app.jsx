@@ -38,9 +38,6 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
-        {/* navbar yet to be made */}
-        {/* <Navbar /> */}
-        <h1>Hello, {this.state.username}</h1>
         <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
       </div>
     );
