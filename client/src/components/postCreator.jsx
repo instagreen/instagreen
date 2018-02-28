@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './navbar.jsx';
+import Utils from '../utils.js';
 
 class PostCreator extends React.Component {
   constructor(props) {
@@ -23,11 +24,22 @@ class PostCreator extends React.Component {
   }
 
   handleSetImageUrl(e) {
-    if (e.key === 'Enter') {
-      let temp = this.state.placeholder;
-      this.setState({
-        imageUrl: temp,
-        placeholder: '',
+    if (e.key === 'Enter' && this.state.placeholder.length) {
+      console.log('woo');
+      const temp = this.state.placeholder;
+      Utils.checkValidImgUrl(temp, (isValid) => {
+        if (isValid) {
+          console.log('url IS an image');
+          this.setState({
+            imageUrl: temp,
+            placeholder: '',
+          });
+        } else {
+          console.log('url is not an image');
+          this.setState({
+            placeholder: '',
+          });
+        }
       });
     }
   }
