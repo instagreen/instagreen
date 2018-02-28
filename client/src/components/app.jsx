@@ -6,6 +6,7 @@ import UserDetail from '../containers/user-detail.jsx';
 import Feed from './feed.jsx';
 import apiCaller from './../apiCaller.js';
 import Profile from './profile.jsx';
+import NavBar from './navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <NavBar />
         {/* navbar yet to be made */}
         {/* <Navbar /> */}
         <h1>Hello, {this.state.username}</h1>
