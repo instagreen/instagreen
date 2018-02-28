@@ -9,7 +9,6 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      user_id: null,
       match: false,
       currentComponent: 'login',
     };
@@ -30,7 +29,7 @@ class LogIn extends React.Component {
         this.setState({ match: false });
       } else {
         console.log('Login successful: ', response.data);
-        this.setState({ match: true, user_id: response.data[0].id });
+        this.setState({ match: true });
       }
     });
   }
@@ -52,7 +51,7 @@ class LogIn extends React.Component {
 
   render() {
     if (this.state.match === true) {
-      return <App user_id={this.state.user_id} />;
+      return <Main />;
     }
     if (this.state.currentComponent === 'login') {
       return (

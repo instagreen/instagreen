@@ -9,16 +9,17 @@ class Main extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
+      user_id: null,
     };
   }
 
   componentDidMount() {
     axios.get('/instagreen/verify').then((response) => {
-      console.log('---response', response);
+      console.log('---response back to CDM', response);
       if (response.data === 'invalid user session') {
         router.setRoute('login');
       } else {
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false, user_id: response.data[0].id });
       }
     });
   }
@@ -30,7 +31,7 @@ class Main extends React.Component {
         </div>
       );
     }
-    return <App />;
+    return <App user_id={this.state.user_id} />;
   }
 }
 
