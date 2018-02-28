@@ -36,13 +36,13 @@ class Post extends React.Component {
     if (e.key === 'Enter') {
       //TODO: ADD TO DB
       apiCaller.handlePostCommentToDb(this.state.comment, this.props.user_id, this.props.post.id, (comment) => {
+        this.setState({ comment: '' });
         this.renderComments();
       });
     }
   }
 
   renderComments() {
-    console.log('rendering comments!')
     const newCommentList = [];
     apiCaller.getComments(this.props.post.id, (response) => {
       response.data.forEach((comment) => {
@@ -78,6 +78,7 @@ class Post extends React.Component {
             onChange={this.handleChange}
             onKeyDown={this.handleEnter}
             name="comment"
+            value={this.state.comment}
             placeholder="Write a comment..."
           />
         </div>
