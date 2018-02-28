@@ -168,12 +168,28 @@ module.exports.fetchUser = (body, callback) => {
     .then(callback);
 };
 
+module.exports.handleGetAllComments = (params, callback) => {
+  knex('comments')
+    .where({
+      post_id: params.post_id,
+    })
+    .then(callback);
+};
+
 module.exports.sessionChecker = (body, callback) => {
   if (body.user) {
     callback('valid user session');
   } else {
     callback('invalid user session');
   }
+};
+
+module.exports.handleGetUserName = (params, callback) => {
+  knex('users')
+    .where({
+      id: params.user_id,
+    })
+    .then(callback);
 };
 
 module.exports.test = (body, callback) => {

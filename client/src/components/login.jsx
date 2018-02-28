@@ -9,18 +9,17 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
+      user_id: null,
       match: false,
       currentComponent: 'login',
     };
   }
   setUsername(e) {
     this.setState({ username: e.target.value });
-    console.log('state username', this.state.username);
   }
 
   setPassword(e) {
     this.setState({ password: e.target.value });
-    console.log('state password', this.state.password);
   }
 
   doLogIn() {
@@ -30,7 +29,8 @@ class LogIn extends React.Component {
         console.log('Invalid username/password combination !!!');
         this.setState({ match: false });
       } else {
-        this.setState({ match: true });
+        console.log('Login successful: ', response.data);
+        this.setState({ match: true, user_id: response.data[0].id });
       }
     });
   }
@@ -52,7 +52,7 @@ class LogIn extends React.Component {
 
   render() {
     if (this.state.match === true) {
-      return <App />;
+      return <App user_id={this.state.user_id} />;
     }
     if (this.state.currentComponent === 'login') {
       return (

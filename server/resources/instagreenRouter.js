@@ -5,6 +5,8 @@ router.post('/follow', controller.submitFollowRequest);
 router.put('/follow', controller.acceptFollow);
 router.delete('/follow', controller.declineFollow);
 
+router.get('/username/:user_id', controller.getUserName);
+
 router.post('/post', controller.addPost);
 
 router.get('/user/:user_id', controller.getUserPosts);
@@ -15,6 +17,7 @@ router.get('/feed/:user_id', controller.getAllFollowerPosts);
 
 router.post('/post/like', controller.addLike);
 
+router.get('/post/comment/:post_id', controller.getCommentsOfPost);
 router.post('/post/comment', controller.addNewComment);
 
 router.post('/login', controller.login);

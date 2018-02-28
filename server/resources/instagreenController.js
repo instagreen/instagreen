@@ -20,16 +20,21 @@ const controller = {
       res.status(200).send(personalPosts);
     });
   },
-  
+
   getAllPosts: (req, res) => {
     res.status(200).send({ message: 'OK' });
   },
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
-    // const user_id = req.body.user_id;
-    // const { user_id } = params; // user_id = params.user_id
     model.getFeed(params.user_id, (feed) => {
       res.status(200).send(feed);
+    });
+  },
+
+  getCommentsOfPost: (req, res) => {
+    console.log('req.params', req.params);
+    model.handleGetAllComments(req.params, (comments) => {
+      res.status(200).send(comments);
     });
   },
 
@@ -54,6 +59,12 @@ const controller = {
   declineFollow: (req, res) => {
     model.handleFollowDecline(req.body, (item) => {
       res.send(JSON.stringify(item));
+    });
+  },
+
+  getUserName: (req, res) => {
+    model.handleGetUserName(req.params, (username) => {
+      res.status(200).send(username);
     });
   },
 
