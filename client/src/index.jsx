@@ -3,6 +3,7 @@ import App from './components/app.jsx';
 import LogIn from './components/login.jsx';
 import Profile from './components/profile.jsx';
 import Post from './components/post.jsx';
+import PostCreator from './components/postCreator.jsx';
 import router from './clientRouter.jsx';
 
 // *** please refer to ./clientRouter.jsx for dynamic component rendering
@@ -13,6 +14,7 @@ router.setup({
   profile: Profile,
   post: Post,
   login: LogIn,
+  postCreator: PostCreator,
 });
 
 router.setRoute('main');

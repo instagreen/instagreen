@@ -33,7 +33,7 @@ class Post extends React.Component {
   }
 
   handleEnter(e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && this.state.comment.length) {
       //TODO: ADD TO DB
       apiCaller.handlePostCommentToDb(this.state.comment, this.props.user_id, this.props.post.id, (comment) => {
         this.setState({ comment: '' });
