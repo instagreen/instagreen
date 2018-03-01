@@ -55,6 +55,15 @@ const apiCaller = {
         console.log(`Error while trying to post new comment -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
+  checkIsFollowing: (user_id, target_id, cb) => {
+    axios.get(`${SERVER}/follow/${user_id}/${target_id}`)
+      .then((followEntry) => {
+        cb(followEntry); // if 0 then not a follower
+      })
+      .catch((error) => {
+        console.log(`Error while trying to check if following -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
 };
 
 export default apiCaller;

@@ -3,7 +3,8 @@ import Post from './post.jsx';
 
 const Feed = props => (
 
-  <div>
+  <div className="container">
+    <h1>Hello, {props.username}</h1>
     {props.feed.map(post => <Post username={props.username} user_id={props.user_id} post={post} key={post.id} />)}
   </div>
 );

@@ -5,6 +5,7 @@ const multer = require('multer');
 router.post('/follow', controller.submitFollowRequest);
 router.put('/follow', controller.acceptFollow);
 router.delete('/follow', controller.declineFollow);
+router.get('/follow/:user_id/:target_id', controller.checkIfFollow);
 
 router.get('/username/:user_id', controller.getUserName);
 

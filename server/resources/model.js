@@ -137,6 +137,16 @@ module.exports.handleFollowDecline = (body, callback) => {
     .then(callback);
 };
 
+module.exports.handleCheckFollow = (params, callback) => {
+  knex('user_target_relation')
+    .where({
+      user_id: params.user_id,
+      target_id: params.target_id,
+      isAccepted: true,
+    })
+    .then(callback);
+};
+
 module.exports.addUserToDb = (body, callback) => {
   knex('users').select()
     .where({
