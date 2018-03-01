@@ -8,7 +8,8 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "build-db": "node ./db/tableCreator.js; mysql -u root < ./db/foreignKeyCreator.sql",
-    "seed-data": "node ./db/dataSeed.js"
+    "seed-data": "node ./db/dataSeed.js",
+    "test-data": "mysql -u root < ./db/testDataSeeder.sql"
   },
   "repository": {
     "type": "git",
