@@ -1,4 +1,5 @@
 const model = require('./model.js');
+const mediaUploader = require('./mediaUploader.js');
 
 const controller = {
   submitFollowRequest: (req, res) => {
@@ -6,10 +7,43 @@ const controller = {
       res.send(data);
     });
   },
+  // this was converted to create post and utilized your model.addPostToDb
+  // addPost: (req, res) => {
+  //   model.addPostToDb(req.body, (post) => {
+  //     res.send(post);
+  //   });
+  // },
+  createPost: (req, res) => {
+    // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
+    // grab media from user
+    const file = req.files[0];
+    // save it
+    mediaUploader.saveMediaToUploads(file, (mediaFilePath) => {
+      // upload it to cloudinary
+      mediaUploader.uploadMediaToStorage(mediaFilePath, (storedMediaInfo) => {
+        // remove the uploaded media file
+        mediaUploader.removeTempFile(mediaFilePath);
+        // get the link to it
+        // console.log('storedMediaInfo ====> ', storedMediaInfo);
+        const cloudinaryMediaUrl = storedMediaInfo.url;
+        // attatch the link with the user_id and description dump it in the in db
+        console.log('this is the req.body: =====> ', req.body);
+        const postBody = {
+          description: req.body.description,
+          user_id: req.body.user_id,
+          imgUrl: cloudinaryMediaUrl,
+        };
 
-  addPost: (req, res) => {
-    model.addPostToDb(req.body, (post) => {
-      res.send(post);
+        // testing example
+        // const postBody = {
+        //   description: 'test yo friend',
+        //   user_id: 1,
+        //   imgUrl: cloudinaryMediaUrl,
+        // };
+        model.addPostToDb(postBody, (post) => {
+          res.status(201).send(post);
+        });
+      });
     });
   },
 
