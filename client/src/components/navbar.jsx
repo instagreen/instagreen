@@ -11,13 +11,13 @@ const NavBar = () => {
   };
 
   return (
-    <div>
-      <ul className="nav">
-        <li><a href="/" onClick={() => router.setRoute('main')}>Feed</a></li>
-        <li><a href="/" onClick={() => router.setRoute('explore')}>Explore</a></li>
-        <li><a href="/" onClick={() => router.setRoute('profile')}>Profile</a></li>
+    <div id="nav">
+      <ul>
+        <li><a href="/" onClick={() => router.setRoute('app')}>Feed</a></li>
+        <li><a href="#" onClick={() => router.setRoute('explore')}>Explore</a></li>
+        <li><a href="#" onClick={() => router.setRoute('profile')}>Profile</a></li>
         <li><a href="#" onClick={() => router.setRoute('postCreator')}>Post</a></li>
-        <li className="logout"><a href="/" onClick={() => { doLogOut(); }}> Log Out </a></li>
+        <li id="logout-button"><a href="/" onClick={() => { doLogOut(); }}> Log Out </a></li>
       </ul>
     </div>
   );

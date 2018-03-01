@@ -1,9 +1,11 @@
 import React from 'react';
 // import Post from
 const Profile = (props) => {
+  console.log('--PROPS.USER_ID from PROFILE', props.user_id);
   return (
     <div id="profile-component">
-      <section id="profile-header">
+    PROFILE
+      {/* <section id="profile-header">
         <img src={props.user.profile_picture} alt="Profile of someone" />
         <h2>Username{props.user.username}</h2>
         <p> {props.user.bio}</p>
@@ -13,7 +15,7 @@ const Profile = (props) => {
       
       <section id="personal-posts">
         {props.personalPosts.map((post) => { return <Post post={post} key={post.id} />; })}
-      </section>
+      </section> */}
     </div>
   );
 };

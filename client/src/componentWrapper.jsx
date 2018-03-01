@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import router from './clientRouter.jsx';
+import NavBar from './components/navbar.jsx';
 
-import App from './app.jsx';
-import NavBar from './navbar.jsx';
-import router from '../clientRouter.jsx';
-
-class Main extends React.Component {
+const wrapComponentWithMain = ComponentToWrap => class extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +11,6 @@ class Main extends React.Component {
       user_id: null,
     };
   }
-
   componentDidMount() {
     axios.get('/instagreen/verify').then((response) => {
       console.log('---response back to CDM', response);
@@ -25,6 +22,7 @@ class Main extends React.Component {
     });
   }
   render() {
+    console.log('---entering WrapComponent');
     if (this.state.isLoading) {
       return (
         <div>
@@ -35,10 +33,10 @@ class Main extends React.Component {
     return (
       <div>
         <NavBar />
-        <App user_id={this.state.user_id} />
-      </div>
-    );
+        <ComponentToWrap user_id={this.state.user_id} />
+      </div>);
   }
-}
+};
 
-export default Main;
+export default wrapComponentWithMain;
+
