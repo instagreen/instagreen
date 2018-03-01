@@ -1,53 +1,46 @@
 import React from 'react';
 import Utils from '../utils.js';
 import componentConfig from './dropUpload.jsx';
+import apiCaller from '../apiCaller.js';
 import DropzoneComponent from 'react-dropzone-component';
 
 class PostCreator extends React.Component {
   constructor(props) {
+    console.log('props', props);
     super(props);
 
     this.state = {
-      placeholder: '',
+      description: '',
       imageUrl: '',
       renderPreview: false,
       filename: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSetImageUrl = this.handleSetImageUrl.bind(this);
-    this.handleGetPhotoFromComputer = this.handleGetPhotoFromComputer.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.eventHandlers = { // these are callbacks that would fire on the following events
+      addedfile: file => console.log('fiiiile: ', file),
+      success: (file, responseFromServer) => {
+        // responseFromServer is now the URL of the image
+        this.setState({
+          imageUrl: responseFromServer,
+          renderPreview: true,
+        });
+      },
+    };
   }
 
   handleChange(e) {
     this.setState({
-      placeholder: e.target.value,
+      description: e.target.value,
     });
   }
 
-  handleSetImageUrl(e) {
-    if (e.key === 'Enter' && this.state.placeholder.length) {
-      console.log('woo');
-      const temp = this.state.placeholder;
-      Utils.checkValidImgUrl(temp, (isValid) => {
-        if (isValid) {
-          console.log('url IS an image');
-          this.setState({
-            imageUrl: temp,
-            placeholder: '',
-          });
-        } else {
-          console.log('url is not an image');
-          this.setState({
-            placeholder: '',
-          });
-        }
-      });
-    }
-  }
-
-  handleGetPhotoFromComputer(e) {
-    // TODO
-    console.log(this.state.imageUrl);
+  handleClick(e) {
+    console.log(this.state.description);
+    apiCaller.sendPostToServer(this.props.user_id, this.state.description, this.state.imageUrl, (entry) => {
+      console.log(entry);
+    });
   }
 
   render() {
@@ -57,9 +50,14 @@ class PostCreator extends React.Component {
       POST CREATOR
         <DropzoneComponent
           config={componentConfig}
-          djsConfig={Utils.djsConfig}
-          eventHandlers={Utils.eventHandlers}
+          eventHandlers={this.eventHandlers}
         />
+        {this.state.renderPreview ?
+          <div className="container form-group">
+            <textarea onChange={this.handleChange} className="form-control" placeholder="description..." id="exampleTextarea" rows="3" />
+            <button type="submit" onClick={this.handleClick} className="btn btn-primary">Post</button>
+          </div>
+        : null}
       </div>
     );
   }
