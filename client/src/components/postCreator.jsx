@@ -54,7 +54,7 @@ class PostCreator extends React.Component {
   render() {
     return (
       <div className="post-creator">
-        <Navbar />
+      POST CREATOR
         <DropzoneComponent
           config={componentConfig}
           djsConfig={Utils.djsConfig}

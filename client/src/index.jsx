@@ -4,36 +4,21 @@ import LogIn from './components/login.jsx';
 import Profile from './components/profile.jsx';
 import Post from './components/post.jsx';
 import PostCreator from './components/postCreator.jsx';
+import Explore from './components/explore.jsx';
 import router from './clientRouter.jsx';
+import wrapWithMainComponent from './componentWrapper.jsx';
 
-// *** please refer to ./clientRouter.jsx for dynamic component rendering
+// *** refer to ./clientRouter.jsx for dynamic component rendering
+// *** reder to ./componentWrapper.jsx for higher order component function
 router.setup({
   main: Main,
-  app: App,
-  // explore: Explore,
-  profile: Profile,
-  post: Post,
+  app: wrapWithMainComponent(App),
+  explore: wrapWithMainComponent(Explore),
+  profile: wrapWithMainComponent(Profile),
+  post: wrapWithMainComponent(Post),
+  postCreator: wrapWithMainComponent(PostCreator),
   login: LogIn,
-  postCreator: PostCreator,
 });
 
 router.setRoute('main');
-
-// --------------------REDUX scraps --------------------
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { createStore } from 'redux';
-// import { Provider } from 'react-redux';
-// import allReducers from './reducers/index.jsx';
-
-// const store = createStore(allReducers);
-// console.log('this is what store looks like!', store.getState());
-
-// ReactDOM.render(
-//   // got rid of provider cause we're sticking with the vanilla react at the moment
-//   // <Provider store={store}>
-//   <App />,
-//   // </Provider>,
-//   document.getElementById('app'),
-// );
 
