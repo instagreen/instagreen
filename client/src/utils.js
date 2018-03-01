@@ -9,9 +9,7 @@ const Utils = {
   eventHandlers: { // these are callbacks that would fire on the following events
     addedfile: file => console.log('fiiiile: ', file),
     success: (file, responseFromServer) => {
-      // responseFromServer[0] is the created post we get back from the server
-      console.log('THING!: ', responseFromServer);
-      // in here we can update the state of our app or add the post somewhere
+      // responseFromServer is now the URL of the image
     },
   },
 
