@@ -19,7 +19,7 @@ const removeTempFile = (tempFilePath, cb) => {
 // ======================= media saver
 
 module.exports.saveMediaToUploads = (files, cb) => {
-  console.log('-----> File for reals ', files);
+  // console.log('-----> File for reals ', files);
   // example of files[0]
   // {
   //   fieldname: '',
@@ -72,7 +72,7 @@ module.exports.uploadMediaToStorage = (filePath, callback) => {
   // const mediaPath = path.join(__dirname, filePath);
   cloudinary.v2.uploader.upload(filePath, { resource_type: 'auto' }, (error, storedMediaInfo) => {
     // console.log('media path', mediaPath);
-    console.log('just file path', filePath);
+    // console.log('just file path', filePath);
     if (error) {
       console.log('error while uploading to cloudinary', error);
     }

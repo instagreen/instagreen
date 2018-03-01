@@ -24,21 +24,22 @@ const controller = {
         // remove the uploaded media file
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
-        console.log('storedMediaInfo ====> ', storedMediaInfo);
+        // console.log('storedMediaInfo ====> ', storedMediaInfo);
         const cloudinaryMediaUrl = storedMediaInfo.url;
         // attatch the link with the user_id and description dump it in the in db
-        // const postBody = {
-        //   description: req.body.description,
-        //   user_id: req.body.user_id,
-        //   imgUrl: cloudinaryMediaUrl,
-        // };
-
-        // testing example
+        console.log('this is the req.body: =====> ', req.body);
         const postBody = {
-          description: 'test yo friend',
-          user_id: 1,
+          description: req.body.description,
+          user_id: req.body.user_id,
           imgUrl: cloudinaryMediaUrl,
         };
+
+        // testing example
+        // const postBody = {
+        //   description: 'test yo friend',
+        //   user_id: 1,
+        //   imgUrl: cloudinaryMediaUrl,
+        // };
         model.addPostToDb(postBody, (post) => {
           res.status(201).send(post);
         });
