@@ -96,6 +96,13 @@ const controller = {
     });
   },
 
+  checkIfFollow: (req, res) => {
+    console.log(req.params);
+    model.handleCheckFollow(req.params, (isFollowing) => {
+      res.send(isFollowing);
+    });
+  },
+
   getUserName: (req, res) => {
     model.handleGetUserName(req.params, (username) => {
       res.status(200).send(username);

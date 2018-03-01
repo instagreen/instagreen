@@ -2,7 +2,7 @@ import React from 'react';
 import CommentEntry from './commentEntry.jsx';
 
 const Comments = props => (
-  <ul>
+  <ul className="comments list-group list-group-flush">
     {props.commentList.map(comment => <CommentEntry key={comment.id} comment={comment} />)}
   </ul>
 );

@@ -8,8 +8,6 @@ const componentConfig = {
   postUrl: '/instagreen/post/create',
 };
 
-
-
 // const djsConfig = {
 //   previewTemplate: ReactDOMServer.renderToStaticMarkup(
 //     <div className="dz-preview dz-file-preview">

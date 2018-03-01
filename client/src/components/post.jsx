@@ -23,6 +23,12 @@ class Post extends React.Component {
       });
     });
 
+    apiCaller.checkIsFollowing(this.props.user_id, this.props.post.user_id, (isFollowing) => {
+      if (isFollowing.data.length) {
+        this.setState({ isFollowing: true });
+      }
+    });
+
     this.renderComments();
   }
 
@@ -57,14 +63,14 @@ class Post extends React.Component {
       this.setState({
         commentList: newCommentList,
       });
-    }, 100);
+    }, 500);
   }
 
   render() {
     return (
-      <div className="post-component">
+      <div className="post-component card row" Style="width: 32rem;">
         <div className="post-component-image">
-          <img alt="test" src={this.props.post.imgUrl} height="250" width="250" />
+          <img alt="test" src={this.props.post.imgUrl} height="510" width="510" />
         </div>
         <div className="post-component-description">
           <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em>
