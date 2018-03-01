@@ -56,8 +56,8 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'login') {
       return (
         <div id="parent" align="center">
-          <div id="header">
-            <h2>Instagreen</h2>
+          <div>
+            <h2 id="header">Instagreen</h2>
           </div>
           <div>
             <input className="input_field" type="text" placeholder="Username" value={this.state.username} onChange={e => this.setUsername(e)} />
@@ -73,8 +73,8 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'signup') {
       return (
         <div id="parent" align="center">
-          <div id="header">
-            <h2>Instagreen</h2>
+          <div>
+            <h2 id="header">Instagreen</h2>
           </div>
           <div>
             <input className="input_field" type="text" placeholder="Username" value={this.state.username} onChange={e => this.setUsername(e)} />

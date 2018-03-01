@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './navbar.jsx';
 import Utils from '../utils.js';
 import componentConfig from './dropUpload.jsx';
 import DropzoneComponent from 'react-dropzone-component';
@@ -52,6 +51,7 @@ class PostCreator extends React.Component {
   }
 
   render() {
+    console.log('--this.PROPS.USER_ID from POSTCREATOR', this.props.user_id);
     return (
       <div className="post-creator">
       POST CREATOR

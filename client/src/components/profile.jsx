@@ -1,6 +1,7 @@
 import React from 'react';
 // import Post from
 const Profile = (props) => {
+  console.log('--PROPS.USER_ID from PROFILE', props.user_id);
   return (
     <div id="profile-component">
     PROFILE

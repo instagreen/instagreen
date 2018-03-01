@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import App from './app.jsx';
+import NavBar from './navbar.jsx';
 import router from '../clientRouter.jsx';
 
 class Main extends React.Component {
@@ -31,7 +32,12 @@ class Main extends React.Component {
         </div>
       );
     }
-    return <App user_id={this.state.user_id} />;
+    return (
+      <div>
+        <NavBar />
+        <App user_id={this.state.user_id} />
+      </div>
+    );
   }
 }
 
