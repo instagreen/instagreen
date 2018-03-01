@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from './navbar.jsx';
 import Utils from '../utils.js';
+import componentConfig from './dropUpload.jsx';
+import DropzoneComponent from 'react-dropzone-component';
 
 class PostCreator extends React.Component {
   constructor(props) {
@@ -53,10 +55,11 @@ class PostCreator extends React.Component {
     return (
       <div className="post-creator">
         <Navbar />
-        <input value={this.state.placeholder} type="url" onChange={this.handleChange} onKeyDown={this.handleSetImageUrl} /><br />
-        <em>or</em> <br />
-        <button onClick={this.handleGetPhotoFromComputer}>Upload from your computer</button>
-        <strong>{this.state.filename}</strong>
+        <DropzoneComponent
+          config={componentConfig}
+          djsConfig={Utils.djsConfig}
+          eventHandlers={Utils.eventHandlers}
+        />
       </div>
     );
   }

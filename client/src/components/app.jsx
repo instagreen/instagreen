@@ -7,9 +7,8 @@ import Feed from './feed.jsx';
 import apiCaller from './../apiCaller.js';
 import Profile from './profile.jsx';
 import NavBar from './navbar.jsx';
-import DropzoneComponent from 'react-dropzone-component';
-// import eventHandlers from './dropUpload.jsx'
-import componentConfig from './dropUpload.jsx'
+// import DropzoneComponent from 'react-dropzone-component';
+// import componentConfig from './dropUpload.jsx';
 
 
 const eventHandlers = { // these are callbacks that would fire on the following events
@@ -61,7 +60,7 @@ class App extends React.Component {
         <NavBar />
         <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
         
-        <DropzoneComponent config={componentConfig} djsConfig={djsConfig} eventHandlers={eventHandlers} />
+        {/* <DropzoneComponent config={componentConfig} djsConfig={djsConfig} eventHandlers={eventHandlers} /> */}
       </div>
     );
   }

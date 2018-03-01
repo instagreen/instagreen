@@ -37,6 +37,11 @@ UPDATE user_target_relation SET isAccepted = 1
 WHERE user_id = 4
 AND target_id = 1;
 
+-- brian accepts request
+UPDATE user_target_relation SET isAccepted = 1
+WHERE user_id = 1
+AND target_id = 2;
+
 -- add dummy posts
 
 -- ANTONIO
