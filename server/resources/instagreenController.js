@@ -1,5 +1,8 @@
+const bcrypt = require('bcryptjs');
 const model = require('./model.js');
 const mediaUploader = require('./mediaUploader.js');
+
+const salt = bcrypt.genSaltSync(10);
 
 const controller = {
   submitFollowRequest: (req, res) => {
@@ -128,13 +131,17 @@ const controller = {
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
       req.session.user = req.body.username;
-      res.send(user);
+      if (bcrypt.compareSync(user[0].password, bcrypt.hashSync(req.body.password, salt))) {
+        res.send(user);
+      }
+      res.send('invalid username/password combination');
     });
   },
 
   signup: (req, res) => {
-    model.addUserToDb(req.body, (post) => {
-      res.send(post);
+    req.body.password = bcrypt.hashSync(req.body.password, salt);
+    model.addUserToDb(req.body, (user) => {
+      res.send(user);
     });
   },
 
@@ -157,6 +164,13 @@ const controller = {
       res.send(thing);
     });
   },
+
+  // login: (req, res) => {
+  //   model.fetchUser(req.body, (user) => {
+  //     req.session.user = req.body.username;
+  //     res.send(user);
+  //   });
+  // },
 };
 
 module.exports.controller = controller;
