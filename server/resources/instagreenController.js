@@ -43,7 +43,7 @@ const controller = {
   },
 
   getAllPosts: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.getExploreFeed(exploreFeed => res.status(200).send(exploreFeed));
   },
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }
