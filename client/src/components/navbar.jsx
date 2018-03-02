@@ -6,7 +6,7 @@ const NavBar = () => {
   const doLogOut = () => {
     axios.get('/instagreen/logout').then((response) => {
       console.log(response);
-      router.setRoute('main');
+      router.setRoute('app');
     });
   };
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import router from './clientRouter.jsx';
 import NavBar from './components/navbar.jsx';
 
-const wrapComponentWithMain = ComponentToWrap => class extends Component {
+const wrapComponent = ComponentToWrap => class extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,5 +38,5 @@ const wrapComponentWithMain = ComponentToWrap => class extends Component {
   }
 };
 
-export default wrapComponentWithMain;
+export default wrapComponent;
 
