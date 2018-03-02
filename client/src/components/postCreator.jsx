@@ -13,7 +13,6 @@ class PostCreator extends React.Component {
       description: '',
       imageUrl: '',
       renderPreview: false,
-      filename: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -37,9 +36,12 @@ class PostCreator extends React.Component {
   }
 
   handleClick(e) {
-    console.log(this.state.description);
     apiCaller.sendPostToServer(this.props.user_id, this.state.description, this.state.imageUrl, (entry) => {
-      console.log(entry);
+      if (entry.status === 200) {
+        this.setState({
+          renderPreview: false,
+        });
+      }
     });
   }
 
@@ -47,7 +49,6 @@ class PostCreator extends React.Component {
     console.log('--this.PROPS.USER_ID from POSTCREATOR', this.props.user_id);
     return (
       <div className="post-creator">
-      POST CREATOR
         <DropzoneComponent
           config={componentConfig}
           eventHandlers={this.eventHandlers}

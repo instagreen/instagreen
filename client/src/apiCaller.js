@@ -75,6 +75,17 @@ const apiCaller = {
         console.log(`Error while trying to send post to db -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
+
+  sendFollowRequestToServer: (user_id, target_id, cb) => {
+    axios.post(`${SERVER}/follow`, {
+      user_id,
+      target_id,
+    })
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to send follow request to db -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
 };
 
 export default apiCaller;

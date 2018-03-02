@@ -7,6 +7,7 @@ class Post extends React.Component {
     super(props);
     this.state = {
       isFollowing: false,
+      isRequested: false,
       commentList: [],
       comment: '',
       author: '',
@@ -14,6 +15,7 @@ class Post extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.renderComments = this.renderComments.bind(this);
+    this.handleFollowRequest = this.handleFollowRequest.bind(this);
   }
 
   componentDidMount() {
@@ -23,12 +25,13 @@ class Post extends React.Component {
       });
     });
 
-    apiCaller.checkIsFollowing(this.props.user_id, this.props.post.user_id, (isFollowing) => {
-      if (isFollowing.data.length) {
+    apiCaller.checkIsFollowing(this.props.user_id, this.props.post.user_id, (response) => {
+      if (response.data.length && response.data[0].isAccepted) {
         this.setState({ isFollowing: true });
+      } else if (response.data.length && !response.data[0].isAccepted) {
+        this.setState({ isRequested: true });
       }
     });
-
     this.renderComments();
   }
 
@@ -46,6 +49,12 @@ class Post extends React.Component {
         this.renderComments();
       });
     }
+  }
+
+  handleFollowRequest() {
+    apiCaller.sendFollowRequestToServer(this.props.user_id, this.props.post.user_id, (response) => {
+
+    });
   }
 
   renderComments() {
@@ -68,7 +77,7 @@ class Post extends React.Component {
 
   render() {
     return (
-      <div className="post-component card row" Style="width: 32rem;">
+      <div className="post-component card row" style={{ width: '32rem' }} >
         <div className="post-component-image">
           <img alt="test" src={this.props.post.imgUrl} height="510" width="510" />
         </div>
@@ -89,7 +98,7 @@ class Post extends React.Component {
           />
         </div>
         <div className="post-component-action-buttons">
-          {this.state.isFollowing ? null : <button>Follow</button>}
+          {this.state.isFollowing ? null : <button disabled={this.state.isRequested} onClick={this.handleFollowRequest}>Follow</button>}
           <button>Like</button>
         </div>
       </div>
