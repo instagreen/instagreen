@@ -9,7 +9,7 @@ router.get('/follow/:user_id/:target_id', controller.checkIfFollow);
 
 router.get('/username/:user_id', controller.getUserName);
 
-// router.post('/post', controller.addPost);
+router.post('/post', controller.addPost);
 
 router.post('/post/create', multer({ dest: 'uploads' }).any(), controller.createPost);
 

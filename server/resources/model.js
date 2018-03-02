@@ -142,7 +142,6 @@ module.exports.handleCheckFollow = (params, callback) => {
     .where({
       user_id: params.user_id,
       target_id: params.target_id,
-      isAccepted: true,
     })
     .then(callback);
 };
@@ -189,13 +188,13 @@ module.exports.handleGetAllComments = (params, callback) => {
 module.exports.checkSession = (body, callback) => {
   if (body.user) {
     knex('users').select()
-    .where({
-      username: body.user,
-    })
-    .then(response => {
-      console.log('response', response); 
-      callback(response);
-    });
+      .where({
+        username: body.user,
+      })
+      .then((response) => {
+        console.log('response', response); 
+        callback(response);
+      });
     // callback('valid user session');
   } else {
     callback('invalid user session');
