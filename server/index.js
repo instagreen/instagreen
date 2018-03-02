@@ -16,7 +16,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
+<<<<<<< HEAD
     expires: 300000, // cookie set to 60 seconds for testing
+=======
+    expires: 600000, // cookie set to 60 seconds for testing
+>>>>>>> [commit] often
   },
 }));
 

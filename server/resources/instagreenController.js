@@ -7,12 +7,13 @@ const controller = {
       res.send(data);
     });
   },
-
+  // this was converted to create post and utilized your model.addPostToDb
   addPost: (req, res) => {
     model.addPostToDb(req.body, (post) => {
       res.send(post);
     });
   },
+<<<<<<< HEAD
 
   updateProfilePic: (req, res) => {
     model.handleUpdateProfilePic(req.body, (status) => {
@@ -26,6 +27,8 @@ const controller = {
     });
   },
 
+=======
+>>>>>>> [commit] often
   createPost: (req, res) => {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
     // grab media from user
@@ -39,9 +42,23 @@ const controller = {
         // get the link to it
         // console.log('storedMediaInfo ====> ', storedMediaInfo);
         const cloudinaryMediaUrl = storedMediaInfo.url;
+        // attatch the link with the user_id and description dump it in the in db
+        console.log('this is the req.body: =====> ', req.body);
+        const postBody = {
+          description: req.body.description,
+          user_id: req.body.user_id,
+          imgUrl: cloudinaryMediaUrl,
+        };
 
-        //send the URL back to the client
-        res.status(201).send(cloudinaryMediaUrl);
+        // testing example
+        // const postBody = {
+        //   description: 'test yo friend',
+        //   user_id: 1,
+        //   imgUrl: cloudinaryMediaUrl,
+        // };
+        model.addPostToDb(postBody, (post) => {
+          res.status(201).send(post);
+        });
       });
     });
   },
