@@ -86,6 +86,14 @@ const apiCaller = {
         console.log(`Error while trying to send follow request to db -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
+
+  getExploreFeed: (cb) => {
+    axios.get(`${SERVER}/explore`)
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to get explore feed -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
 };
 
 export default apiCaller;
