@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import Main from './main.jsx';
+import router from '../clientRouter.jsx';
 
 class LogIn extends React.Component {
   constructor() {
@@ -9,7 +9,6 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      match: false,
       currentComponent: 'login',
     };
   }
@@ -26,10 +25,9 @@ class LogIn extends React.Component {
     axios.post('/instagreen/login', { username, password }).then((response) => {
       if (response.data.length === 0) {
         console.log('Invalid username/password combination !!!, response.data', response.data);
-        this.setState({ match: false });
       } else {
         console.log('Login successful: ', response.data);
-        this.setState({ match: true });
+        router.setRoute('app');
       }
     });
   }
@@ -50,9 +48,6 @@ class LogIn extends React.Component {
   }
 
   render() {
-    if (this.state.match === true) {
-      return <Main />;
-    }
     if (this.state.currentComponent === 'login') {
       return (
         <div id="parent" align="center">
