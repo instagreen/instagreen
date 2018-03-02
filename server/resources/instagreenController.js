@@ -43,7 +43,8 @@ const controller = {
         // remove the uploaded media file
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
-        // console.log('storedMediaInfo ====> ', storedMediaInfo);
+        console.log('storedMediaInfo ====> ', storedMediaInfo);
+
         const cloudinaryMediaUrl = storedMediaInfo.url;
         // attatch the link with the user_id and description dump it in the in db
         console.log('this is the req.body: =====> ', req.body);
@@ -118,6 +119,13 @@ const controller = {
   checkIfFollow: (req, res) => {
     console.log(req.params);
     model.handleCheckFollow(req.params, (isFollowing) => {
+      res.send(isFollowing);
+    });
+  },
+
+  fetchFollowers: (req, res) => {
+    console.log(req.params);
+    model.fetchFollowers(req.params, (isFollowing) => {
       res.send(isFollowing);
     });
   },

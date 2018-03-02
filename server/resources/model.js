@@ -170,6 +170,15 @@ module.exports.handleCheckFollow = (params, callback) => {
     .then(callback);
 };
 
+module.exports.fetchFollowers = (params, callback) => {
+  knex('user_target_relation')
+    .where({
+      isAccepted: 0,
+      target_id: params.target_id,
+    })
+    .then(callback);
+};
+
 module.exports.addUserToDb = (body, callback) => {
   knex('users').select()
     .where({

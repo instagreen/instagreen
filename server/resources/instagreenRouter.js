@@ -6,6 +6,7 @@ router.post('/follow', controller.submitFollowRequest);
 router.put('/follow', controller.acceptFollow);
 router.delete('/follow', controller.declineFollow);
 router.get('/follow/:user_id/:target_id', controller.checkIfFollow);
+router.get('/follow/:target_id', controller.fetchFollowers);
 
 router.get('/username/:user_id', controller.getUserName);
 
@@ -37,16 +38,6 @@ router.get('/logout', controller.logout);
 
 // DEV only
 router.all('/test', controller.test);
-
-
-// Validation middleware test
-// const sessionValidator = (req, res, next) => {
-//   if (!req.session.user) {
-//     res.send('must be logged in');
-//   } else {
-//     next();
-//   }
-// };
 
 module.exports.router = router;
 
