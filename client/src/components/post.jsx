@@ -96,6 +96,7 @@ class Post extends React.Component {
         <div className="post-component-add-comment">
           <input
             type="text"
+            className="form-control"
             onChange={this.handleChange}
             onKeyDown={this.handleEnter}
             name="comment"
@@ -105,10 +106,15 @@ class Post extends React.Component {
         </div>
         <div className="post-component-action-buttons">
           {this.state.isFollowing ? null :
-          <button disabled={this.state.isRequested} onClick={this.handleFollowRequest}>
+          <button
+            type="button"
+            className="btn-sml btn-outline-info"
+            disabled={this.state.isRequested}
+            onClick={this.handleFollowRequest}
+          >
             {this.state.isRequested ? 'Follow Pending' : 'Follow'}
           </button>}
-          <button>Like</button>
+          <button type="button" className="btn-sml btn-outline-info">Like</button>
         </div>
       </div>
     );
