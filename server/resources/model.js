@@ -10,7 +10,6 @@ const knex = require('knex')({
   },
   useNullAsDefault: true,
 });
-
 // ===========feed
 module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   // find the people I follow
@@ -171,6 +170,21 @@ module.exports.handleCheckFollow = (params, callback) => {
     .then(callback);
 };
 
+module.exports.fetchFollowRequests = (params, callback) => {
+  knex('user_target_relation')
+    .where({
+      isAccepted: 0,
+      target_id: params.target_id,
+    })
+    .then((response) => {
+      const userIds = response.map((record) => {
+        return (record.user_id);
+      });
+      knex('users').select().whereIn('id', userIds)
+        .then(callback);
+    });
+};
+
 module.exports.addUserToDb = (body, callback) => {
   knex('users').select()
     .where({
@@ -197,10 +211,19 @@ module.exports.fetchUser = (body, callback) => {
   knex('users').select()
     .where({
       username: body.username,
-      password: body.password,
     })
     .then(callback);
 };
+
+// module.exports.fetchUser = (body, callback) => {
+//   knex('users').select()
+//     .where({
+//       username: body.username,
+//       password: body.password,
+//     })
+//     .then(callback);
+// };
+// bcrypt.hashSync(body.password, salt)
 
 module.exports.handleGetAllComments = (params, callback) => {
   knex('comments')

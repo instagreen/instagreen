@@ -1,5 +1,8 @@
+const bcrypt = require('bcryptjs');
 const model = require('./model.js');
 const mediaUploader = require('./mediaUploader.js');
+
+const salt = bcrypt.genSaltSync(10);
 
 const controller = {
   submitFollowRequest: (req, res) => {
@@ -7,7 +10,7 @@ const controller = {
       res.send(data);
     });
   },
-
+  // this was converted to create post and utilized your model.addPostToDb
   addPost: (req, res) => {
     model.addPostToDb(req.body, (post) => {
       res.send(post);
@@ -37,11 +40,26 @@ const controller = {
         // remove the uploaded media file
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
-        // console.log('storedMediaInfo ====> ', storedMediaInfo);
-        const cloudinaryMediaUrl = storedMediaInfo.url;
+        console.log('storedMediaInfo ====> ', storedMediaInfo);
 
-        //send the URL back to the client
-        res.status(201).send(cloudinaryMediaUrl);
+        const cloudinaryMediaUrl = storedMediaInfo.url;
+        // attatch the link with the user_id and description dump it in the in db
+        console.log('this is the req.body: =====> ', req.body);
+        const postBody = {
+          description: req.body.description,
+          user_id: req.body.user_id,
+          imgUrl: cloudinaryMediaUrl,
+        };
+
+        // testing example
+        // const postBody = {
+        //   description: 'test yo friend',
+        //   user_id: 1,
+        //   imgUrl: cloudinaryMediaUrl,
+        // };
+        model.addPostToDb(postBody, (post) => {
+          res.status(201).send(post);
+        });
       });
     });
   },
@@ -90,15 +108,20 @@ const controller = {
   },
 
   declineFollow: (req, res) => {
-    model.handleFollowDecline(req.body, (item) => {
+    model.handleFollowDecline(req.params, (item) => {
       res.send(JSON.stringify(item));
     });
   },
 
   checkIfFollow: (req, res) => {
-    console.log(req.params);
     model.handleCheckFollow(req.params, (isFollowing) => {
       res.send(isFollowing);
+    });
+  },
+
+  fetchFollowRequests: (req, res) => {
+    model.fetchFollowRequests(req.params, (requesters) => {
+      res.send(requesters);
     });
   },
 
@@ -111,13 +134,17 @@ const controller = {
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
       req.session.user = req.body.username;
-      res.send(user);
+      if (bcrypt.compareSync(user[0].password, bcrypt.hashSync(req.body.password, salt))) {
+        res.send(user);
+      }
+      res.send('invalid username/password combination');
     });
   },
 
   signup: (req, res) => {
-    model.addUserToDb(req.body, (post) => {
-      res.send(post);
+    req.body.password = bcrypt.hashSync(req.body.password, salt);
+    model.addUserToDb(req.body, (user) => {
+      res.send(user);
     });
   },
 
@@ -140,6 +167,13 @@ const controller = {
       res.send(thing);
     });
   },
+
+  // login: (req, res) => {
+  //   model.fetchUser(req.body, (user) => {
+  //     req.session.user = req.body.username;
+  //     res.send(user);
+  //   });
+  // },
 };
 
 module.exports.controller = controller;

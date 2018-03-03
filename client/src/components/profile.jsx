@@ -1,6 +1,7 @@
 import React from 'react';
 import Post from './post.jsx';
 import apiCaller from '../apiCaller.js';
+import RequestInbox from './requestInbox.jsx';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -34,11 +35,12 @@ class Profile extends React.Component {
   render() {
     return (
       <div id="profile-component" className="container">
-
+      <RequestInbox user_id={this.props.user_id} />
         <div className="row" id="profile-header">
           <div className="col-3">
             <img className="img-thumbnail" alt="" src={this.state.profilePic} />
           </div>
+          
           <div className="col-5">
             <h2>{this.state.displayName}</h2>
             <em>Bio goes here. lorem freakin ipsum</em> <br />
