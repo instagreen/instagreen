@@ -85,7 +85,7 @@ class Post extends React.Component {
     return (
       <div className="post-component card row" style={{ width: '32rem' }} >
         <div className="post-component-image">
-          <img alt="test" src={this.props.post.imgUrl} height="510" width="510" />
+          <img alt="test" src={this.props.post.imgUrl} height="400" width="600" />
         </div>
         <div className="post-component-description">
           <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em>

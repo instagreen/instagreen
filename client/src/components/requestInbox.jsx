@@ -7,9 +7,7 @@ class RequestInbox extends React.Component {
     this.state = {
       requests: [],
       opened: false,
-      requester: null,
     };
-    this.toggleInbox = this.toggleInbox.bind(this);
   }
 
   componentDidMount() {
@@ -29,38 +27,48 @@ class RequestInbox extends React.Component {
 
   acceptRequest(req) {
     const targetId = this.props.user_id;
-    axios.put('/instagreen/follow/', { user_id: req.id, target_id: targetId }).then((response) => {
-      console.log(`request from ${req.username} accepted`, response.data);
+    axios.put('/instagreen/follow/', { user_id: req.id, target_id: targetId }).then((success) => {
+      console.log(`request from ${req.username} accepted`, success.data);
+      axios.get(`/instagreen/follow/${targetId}`).then((response) => {
+        this.setState({ requests: response.data });
+      });
     });
   }
 
   declineRequest(req) {
     const targetId = this.props.user_id;
-    axios.delete(`/instagreen/follow/${req.id}/${targetId}`).then((response) => {
-      console.log(`request from ${req.username} declined`, response.data);
+    axios.delete(`/instagreen/follow/${req.id}/${targetId}`).then((success) => {
+      console.log(`request from ${req.username} declined`, success.data);
+      axios.get(`/instagreen/follow/${targetId}`).then((response) => {
+        this.setState({ requests: response.data });
+      });
     });
   }
 
   render() {
     if (this.state.opened) {
       return (
-        <div>
-          <button onClick={() => { this.toggleInbox(); }}>View Requests</button>
-          {this.state.requests.map((req) => {
-            return (
-              <li key={req.id}>
-                {req.username}
-                <button onClick={() => { this.acceptRequest(req); }}>Accept</button>
-                <button onClick={() => { this.declineRequest(req); }}>Decline</button>
-              </li>
-            );
-          })}
+        <div id="request-inbox">
+          <i class="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }}></i>
+          <table>
+            <tbody>
+            {this.state.requests.map((req) => {
+              return (
+                <tr key={req.id}>
+                  <td>{req.username}</td>
+                  <td><button id="acc-btn" onClick={() => { this.acceptRequest(req); }}><i class="glyphicon glyphicon-ok"></i></button></td>
+                  <td><button id="dec-btn" onClick={() => { this.declineRequest(req); }}><i class="glyphicon glyphicon-remove"></i></button></td>
+                </tr>
+              );
+            })}
+            </tbody>
+          </table>
         </div>
       );
     }
     return (
-      <div>
-        <button onClick={() => { this.toggleInbox(); }}>View Requests</button>
+      <div id="request-inbox">
+          <i class="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }}></i>
       </div>
     );
   }
