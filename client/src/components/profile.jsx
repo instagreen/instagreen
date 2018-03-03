@@ -8,6 +8,7 @@ class Profile extends React.Component {
     this.state = {
       userInfo: {},
       userPosts: [],
+      profilePic: '',
       renderEditComponent: false,
       displayName: '',
     };
@@ -16,9 +17,11 @@ class Profile extends React.Component {
   componentWillMount() {
     apiCaller.getUserInfo(this.props.user_id, (userInfo) => {
       const temp = userInfo.data[0];
+      const dp = temp.displayImageUrl || 'http://www.rsa.neu.edu/wp-content/uploads/blank-profile-picture-500x500.png';
       this.setState({
         userInfo: temp,
         displayName: temp.username.toUpperCase(),
+        profilePic: dp,
       });
     });
 
@@ -34,7 +37,7 @@ class Profile extends React.Component {
 
         <div className="row" id="profile-header">
           <div className="col-3">
-            <img className="img-thumbnail" alt="" src="http://www.todayifoundout.com/wp-content/uploads/2017/12/myspace-tom.jpg" />
+            <img className="img-thumbnail" alt="" src={this.state.profilePic} />
           </div>
           <div className="col-5">
             <h2>{this.state.displayName}</h2>

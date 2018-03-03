@@ -15,6 +15,8 @@ router.post('/post/create', multer({ dest: 'uploads' }).any(), controller.create
 
 router.get('/user/:user_id', controller.getUserPosts);
 
+router.put('/profile', controller.updateProfile);
+
 router.get('/explore', controller.getAllPosts);
 
 router.get('/feed/:user_id', controller.getAllFollowerPosts);

@@ -29,6 +29,16 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   });
 };
 
+module.exports.handleUpdateProfile = (body, callback) => {
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
+      displayImageUrl: body.displayImageUrl,
+      bio: body.bio,
+    })
+    .then(callback);
+};
+
 module.exports.getExploreFeed = (cb) => {
   knex('posts')
     .select()

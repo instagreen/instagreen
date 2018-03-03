@@ -14,6 +14,12 @@ const controller = {
     });
   },
 
+  updateProfile: (req, res) => {
+    model.handleUpdateProfile(req.body, (userInfo) => {
+      res.send(userInfo);
+    });
+  },
+
   createPost: (req, res) => {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
     // grab media from user
