@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import Post from './post.jsx';
 import apiCaller from '../apiCaller.js';
 
@@ -35,19 +34,5 @@ class Explore extends React.Component {
     );
   }
 }
-=======
-import RequestInbox from './requestInbox.jsx';
-
-// TESTING
-const Explore = (props) => {
-  console.log('--PROPS.USER_ID from EXPLORE', props.user_id);
-  return (
-    <div>
-      <RequestInbox user_id={props.user_id} />
-      EXPLORE
-    </div>
-  );
-};
->>>>>>> [requestInbox] fetches followers
 
 export default Explore;

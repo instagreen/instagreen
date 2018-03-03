@@ -16,7 +16,6 @@ const controller = {
       res.send(post);
     });
   },
-<<<<<<< HEAD
 
   updateProfilePic: (req, res) => {
     model.handleUpdateProfilePic(req.body, (status) => {
@@ -30,8 +29,6 @@ const controller = {
     });
   },
 
-=======
->>>>>>> [commit] often
   createPost: (req, res) => {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
     // grab media from user
