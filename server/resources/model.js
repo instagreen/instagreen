@@ -38,7 +38,6 @@ module.exports.handleUpdateProfilePic = (body, callback) => {
 };
 
 module.exports.handleUpdateProfileBio = (body, callback) => {
-  console.log(body)
   knex('users')
     .where({ id: body.user_id })
     .update({
@@ -158,7 +157,7 @@ module.exports.handleFollowAccept = (body, callback) => {
         .where({ id: body.target_id })
         .increment('follower_count', 1)
         .then(thing => console.log('follower_count updated', thing));
-        
+
       callback(item);
     });
 };
