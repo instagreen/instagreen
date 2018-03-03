@@ -10,7 +10,7 @@ class PostCreator extends React.Component {
     this.state = {
       description: '',
       file: null,
-      displaySuccessPanel: 'hidden',
+      displaySuccessPanel: 'hiddenElement',
       dropzoneObj: null,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -47,10 +47,10 @@ class PostCreator extends React.Component {
     };
     apiCaller.sendMediaToServer(this.state.file, postBody, ((res) => {
       // render the success message
-      this.setState({ displaySuccessPanel: 'visible' });
+      this.setState({ displaySuccessPanel: 'visibleElement' });
       // display it for 4 seconds and hide it
       setTimeout((() => {
-        this.setState({ displaySuccessPanel: 'hidden' });
+        this.setState({ displaySuccessPanel: 'hiddenElement' });
       }).bind(this), 4000);
       // clear the text area
       this.setState({ description: '' });

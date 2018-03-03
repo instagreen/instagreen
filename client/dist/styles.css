@@ -215,7 +215,7 @@ div.filepicker {
   margin-top: 1%;
 }
 
-.post-panel {
+.container.form-group.post-panel {
   width: 50%;
   margin-top: 5%;
 }
@@ -230,13 +230,14 @@ div.filepicker {
   padding-right: 0;
 }
 
-.hidden {
+.hiddenElement {
   opacity: 0;
   -webkit-transition: opacity 1s linear; /* Safari */
   transition: opacity 1s linear;
 }
 
-.visible {
+.visibleElement {
   opacity: 1;
+  -webkit-transition: opacity 1s linear; /* Safari */
   transition: opacity 1s linear;
 }
