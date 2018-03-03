@@ -29,11 +29,20 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   });
 };
 
-module.exports.handleUpdateProfile = (body, callback) => {
+module.exports.handleUpdateProfilePic = (body, callback) => {
   knex('users')
     .where({ id: body.user_id })
     .update({
       displayImageUrl: body.displayImageUrl,
+    })
+    .then(callback);
+};
+
+module.exports.handleUpdateProfileBio = (body, callback) => {
+  console.log(body)
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
       bio: body.bio,
     })
     .then(callback);

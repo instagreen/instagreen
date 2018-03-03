@@ -14,9 +14,15 @@ const controller = {
     });
   },
 
-  updateProfile: (req, res) => {
-    model.handleUpdateProfile(req.body, (userInfo) => {
-      res.send(userInfo);
+  updateProfilePic: (req, res) => {
+    model.handleUpdateProfilePic(req.body, (status) => {
+      res.send(JSON.stringify(status));
+    });
+  },
+
+  updateProfileBio: (req, res) => {
+    model.handleUpdateProfileBio(req.body, (status) => {
+      res.send(JSON.stringify(status));
     });
   },
 
