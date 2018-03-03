@@ -49,18 +49,18 @@ class RequestInbox extends React.Component {
     if (this.state.opened) {
       return (
         <div id="request-inbox">
-          <i class="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }}></i>
+          <i className="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }} />
           <table>
             <tbody>
-            {this.state.requests.map((req) => {
-              return (
-                <tr key={req.id}>
-                  <td>{req.username}</td>
-                  <td><button id="acc-btn" onClick={() => { this.acceptRequest(req); }}><i class="glyphicon glyphicon-ok"></i></button></td>
-                  <td><button id="dec-btn" onClick={() => { this.declineRequest(req); }}><i class="glyphicon glyphicon-remove"></i></button></td>
-                </tr>
-              );
-            })}
+              {this.state.requests.map((req) => {
+                return (
+                  <tr key={req.id}>
+                    <td>{req.username}</td>
+                    <td><button id="acc-btn" onClick={() => { this.acceptRequest(req); }}><i className="glyphicon glyphicon-ok"></i></button></td>
+                    <td><button id="dec-btn" onClick={() => { this.declineRequest(req); }}><i className="glyphicon glyphicon-remove"></i></button></td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -68,7 +68,7 @@ class RequestInbox extends React.Component {
     }
     return (
       <div id="request-inbox">
-          <i class="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }}></i>
+          <i className="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }} />
       </div>
     );
   }
