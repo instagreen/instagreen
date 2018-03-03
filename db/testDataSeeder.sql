@@ -28,6 +28,11 @@ UPDATE user_target_relation SET isAccepted = 1
 WHERE user_id = 1
 AND target_id = 4;
 
+UPDATE users SET follower_count = follower_count + 1
+WHERE id = 4;
+UPDATE users SET following_count = following_count + 1
+WHERE id = 1;
+
 -- masterChief sends antonio a follow request
 INSERT INTO user_target_relation (user_id, target_id, isAccepted) VALUES
   (4, 1, 0);
@@ -37,10 +42,20 @@ UPDATE user_target_relation SET isAccepted = 1
 WHERE user_id = 4
 AND target_id = 1;
 
+UPDATE users SET follower_count = follower_count + 1
+WHERE id = 1;
+UPDATE users SET following_count = following_count + 1
+WHERE id = 4;
+
 -- brian accepts request
 UPDATE user_target_relation SET isAccepted = 1
 WHERE user_id = 1
 AND target_id = 2;
+
+UPDATE users SET follower_count = follower_count + 1
+WHERE id = 2;
+UPDATE users SET following_count = following_count + 1
+WHERE id = 1;
 
 -- add dummy posts
 

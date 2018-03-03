@@ -39,11 +39,12 @@ class Profile extends React.Component {
         <div className="row" id="profile-header">
           <div className="col-3">
             <img className="img-thumbnail" alt="" src={this.state.profilePic} />
+            <button type="button" className="btn-sml btn-outline-secondary">Change Picture</button>
           </div>
           
           <div className="col-5">
             <h2>{this.state.displayName}</h2>
-            <em>Bio goes here. lorem freakin ipsum</em> <br />
+            <em>{this.state.userInfo.bio}</em> <br />
             <strong>Followers: </strong><em>{this.state.userInfo.follower_count}</em><br />
             <strong>Following: </strong><em>{this.state.userInfo.following_count}</em><br /><br />
             <div className="btn-group" role="group">
@@ -55,7 +56,7 @@ class Profile extends React.Component {
         <hr />
         <br />
         <div id="personal-posts">
-          {this.state.userPosts.map(post => <Post post={post} key={post.id} />)}
+          {this.state.userPosts.map(post => <Post post={post} user_id={this.props.user_id} key={post.id} />)}
         </div>
       </div>
     );
