@@ -86,6 +86,27 @@ const apiCaller = {
         console.log(`Error while trying to send follow request to db -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
+  sendMediaToServer: (file, body, cb) => {
+    // grouping the file with the form fields
+    const formData = new FormData();
+    formData.append('file', file);
+    const properties = Object.entries(body);
+    properties.forEach((propertyTupal) => {
+      // adding the form fields as properties on the request
+      // Key value pair
+      formData.set(propertyTupal[0], propertyTupal[1]);
+    });
+    // sending file and fields to server
+    axios.post(`${SERVER}/post/create`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((response) => {
+      cb(response);
+    }).catch((response) => {
+      console.log('error', response);
+    });
+  },
 };
 
 export default apiCaller;

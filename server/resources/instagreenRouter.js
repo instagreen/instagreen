@@ -9,7 +9,7 @@ router.get('/follow/:user_id/:target_id', controller.checkIfFollow);
 
 router.get('/username/:user_id', controller.getUserName);
 
-router.post('/post', controller.addPost);
+// router.post('/post', controller.addPost);
 
 router.post('/post/create', multer({ dest: 'uploads' }).any(), controller.createPost);
 
@@ -33,8 +33,7 @@ router.get('/verify', controller.verify);
 router.get('/logout', controller.logout);
 
 // DEV only
-router.all('/test', controller.test);
-
+// router.all('/test', multer({ dest: 'uploads' }).any(), controller.test);
 
 // Validation middleware test
 // const sessionValidator = (req, res, next) => {

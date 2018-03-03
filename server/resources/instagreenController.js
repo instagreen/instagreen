@@ -8,11 +8,11 @@ const controller = {
     });
   },
 
-  addPost: (req, res) => {
-    model.addPostToDb(req.body, (post) => {
-      res.send(post);
-    });
-  },
+  // addPost: (req, res) => {
+  //   model.addPostToDb(req.body, (post) => {
+  //     res.send(post);
+  //   });
+  // },
 
   createPost: (req, res) => {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
@@ -26,10 +26,17 @@ const controller = {
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
         // console.log('storedMediaInfo ====> ', storedMediaInfo);
-        const cloudinaryMediaUrl = storedMediaInfo.url;
-
-        //send the URL back to the client
-        res.status(201).send(cloudinaryMediaUrl);
+        // constructing the post object so it can be stored in the db
+        // afte we received the media url on cloudinary
+        const postBody = {
+          description: req.body.description,
+          user_id: req.body.user_id,
+          imgUrl: storedMediaInfo.url,
+        };
+        model.addPostToDb(postBody, (post) => {
+          // send the URL back to the client
+          res.status(201).send(post);
+        });
       });
     });
   },

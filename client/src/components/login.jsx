@@ -73,7 +73,7 @@ class LogIn extends React.Component {
           </div>
           <div>
             <input className="input_field" type="text" placeholder="Username" value={this.state.username} onChange={e => this.setUsername(e)} />
-            <input className="input_field" type="text" placeholder="Password" value={this.state.password} onChange={e => this.setPassword(e)} />
+            <input className="input_field" type="password" placeholder="Password" value={this.state.password} onChange={e => this.setPassword(e)} />
             <button className="input_field" onClick={() => this.doSignUp()}>Sign Up</button>
           </div>
           <div id="redirect_html">
