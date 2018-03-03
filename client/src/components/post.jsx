@@ -20,8 +20,12 @@ class Post extends React.Component {
 
   componentWillMount() {
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
+      const temp = response.data[0].username;
+      if (temp.id === this.props.user_id) {
+        this.setState({ isFollowing: true });
+      }
       this.setState({
-        author: response.data[0].username,
+        author: temp,
       });
     });
 
@@ -43,7 +47,7 @@ class Post extends React.Component {
 
   handleEnter(e) {
     if (e.key === 'Enter' && this.state.comment.length) {
-      //TODO: ADD TO DB
+      // TODO: ADD TO DB
       apiCaller.handlePostCommentToDb(this.state.comment, this.props.user_id, this.props.post.id, (comment) => {
         this.setState({ comment: '' });
         this.renderComments();
