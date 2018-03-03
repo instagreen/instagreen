@@ -10,7 +10,6 @@ const knex = require('knex')({
   },
   useNullAsDefault: true,
 });
-
 // ===========feed
 module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   // find the people I follow
@@ -27,6 +26,30 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
         cb(feed);
       });
   });
+};
+
+module.exports.handleUpdateProfilePic = (body, callback) => {
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
+      displayImageUrl: body.displayImageUrl,
+    })
+    .then(callback);
+};
+
+module.exports.handleUpdateProfileBio = (body, callback) => {
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
+      bio: body.bio,
+    })
+    .then(callback);
+};
+
+module.exports.getExploreFeed = (cb) => {
+  knex('posts')
+    .select()
+    .then(cb);
 };
 
 module.exports.getPersonalPosts = (user_id, cb) => { // user_id the owner of the profile
@@ -124,7 +147,19 @@ module.exports.handleFollowAccept = (body, callback) => {
       target_id: body.target_id,
     })
     .update({ isAccepted: true })
-    .then(callback);
+    .then((item) => {
+      knex('users')
+        .where({ id: body.user_id })
+        .increment('following_count', 1)
+        .then(thing => console.log('following_count updated', thing));
+
+      knex('users')
+        .where({ id: body.target_id })
+        .increment('follower_count', 1)
+        .then(thing => console.log('follower_count updated', thing));
+
+      callback(item);
+    });
 };
 
 module.exports.handleFollowDecline = (body, callback) => {
@@ -144,6 +179,21 @@ module.exports.handleCheckFollow = (params, callback) => {
       target_id: params.target_id,
     })
     .then(callback);
+};
+
+module.exports.fetchFollowRequests = (params, callback) => {
+  knex('user_target_relation')
+    .where({
+      isAccepted: 0,
+      target_id: params.target_id,
+    })
+    .then((response) => {
+      const userIds = response.map((record) => {
+        return (record.user_id);
+      });
+      knex('users').select().whereIn('id', userIds)
+        .then(callback);
+    });
 };
 
 module.exports.addUserToDb = (body, callback) => {
@@ -172,10 +222,19 @@ module.exports.fetchUser = (body, callback) => {
   knex('users').select()
     .where({
       username: body.username,
-      password: body.password,
     })
     .then(callback);
 };
+
+// module.exports.fetchUser = (body, callback) => {
+//   knex('users').select()
+//     .where({
+//       username: body.username,
+//       password: body.password,
+//     })
+//     .then(callback);
+// };
+// bcrypt.hashSync(body.password, salt)
 
 module.exports.handleGetAllComments = (params, callback) => {
   knex('comments')

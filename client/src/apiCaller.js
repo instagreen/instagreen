@@ -107,6 +107,26 @@ const apiCaller = {
       console.log('error', response);
     });
   },
+
+  getExploreFeed: (cb) => {
+    axios.get(`${SERVER}/explore`)
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to get explore feed -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
+
+  handleUpdateBio: (user_id, bioText, cb) => {
+    axios.put(`${SERVER}/profile/bio`, {
+      user_id,
+      bio: bioText,
+    })
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to update bio -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
+
 };
 
 export default apiCaller;

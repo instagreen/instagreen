@@ -86,7 +86,3 @@ class LogIn extends React.Component {
 }
 
 export default LogIn;
-
-// Background styling for later
-// 'http://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Misty-Nature-Forest-Fog-Wallpaper-PIC-WPB004382.jpg'
-// https://facebook.github.io/react-native/docs/image.html#background-image-via-nesting

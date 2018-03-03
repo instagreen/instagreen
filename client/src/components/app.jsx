@@ -23,7 +23,7 @@ class App extends React.Component {
 
     apiCaller.getFeed(this.state.user_id, (response) => {
       this.setState({
-        feed: response.data,
+        feed: response.data.reverse(),
       });
     });
   }
