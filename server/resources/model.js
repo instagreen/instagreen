@@ -38,7 +38,6 @@ module.exports.handleUpdateProfilePic = (body, callback) => {
 };
 
 module.exports.handleUpdateProfileBio = (body, callback) => {
-  console.log(body)
   knex('users')
     .where({ id: body.user_id })
     .update({
@@ -148,7 +147,19 @@ module.exports.handleFollowAccept = (body, callback) => {
       target_id: body.target_id,
     })
     .update({ isAccepted: true })
-    .then(callback);
+    .then((item) => {
+      knex('users')
+        .where({ id: body.user_id })
+        .increment('following_count', 1)
+        .then(thing => console.log('following_count updated', thing));
+
+      knex('users')
+        .where({ id: body.target_id })
+        .increment('follower_count', 1)
+        .then(thing => console.log('follower_count updated', thing));
+
+      callback(item);
+    });
 };
 
 module.exports.handleFollowDecline = (body, callback) => {
@@ -240,7 +251,7 @@ module.exports.checkSession = (body, callback) => {
         username: body.user,
       })
       .then((response) => {
-        console.log('response', response); 
+        console.log('response', response);
         callback(response);
       });
     // callback('valid user session');
