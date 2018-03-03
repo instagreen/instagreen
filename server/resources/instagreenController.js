@@ -111,22 +111,20 @@ const controller = {
   },
 
   declineFollow: (req, res) => {
-    model.handleFollowDecline(req.body, (item) => {
+    model.handleFollowDecline(req.params, (item) => {
       res.send(JSON.stringify(item));
     });
   },
 
   checkIfFollow: (req, res) => {
-    console.log(req.params);
     model.handleCheckFollow(req.params, (isFollowing) => {
       res.send(isFollowing);
     });
   },
 
-  fetchFollowers: (req, res) => {
-    console.log(req.params);
-    model.fetchFollowers(req.params, (isFollowing) => {
-      res.send(isFollowing);
+  fetchFollowRequests: (req, res) => {
+    model.fetchFollowRequests(req.params, (requesters) => {
+      res.send(requesters);
     });
   },
 

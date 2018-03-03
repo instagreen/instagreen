@@ -37,13 +37,14 @@ class Explore extends React.Component {
 }
 =======
 import RequestInbox from './requestInbox.jsx';
+
 // TESTING
 const Explore = (props) => {
   console.log('--PROPS.USER_ID from EXPLORE', props.user_id);
   return (
     <div>
-      EXPLORE
       <RequestInbox user_id={props.user_id} />
+      EXPLORE
     </div>
   );
 };

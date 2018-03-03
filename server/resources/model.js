@@ -170,13 +170,19 @@ module.exports.handleCheckFollow = (params, callback) => {
     .then(callback);
 };
 
-module.exports.fetchFollowers = (params, callback) => {
+module.exports.fetchFollowRequests = (params, callback) => {
   knex('user_target_relation')
     .where({
       isAccepted: 0,
       target_id: params.target_id,
     })
-    .then(callback);
+    .then((response) => {
+      const userIds = response.map((record) => {
+        return (record.user_id);
+      });
+      knex('users').select().whereIn('id', userIds)
+        .then(callback);
+    });
 };
 
 module.exports.addUserToDb = (body, callback) => {
