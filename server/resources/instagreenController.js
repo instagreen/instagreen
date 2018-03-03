@@ -60,7 +60,7 @@ const controller = {
   },
 
   getCommentsOfPost: (req, res) => {
-    console.log('req.params', req.params);
+    
     model.handleGetAllComments(req.params, (comments) => {
       res.status(200).send(comments);
     });
@@ -91,7 +91,6 @@ const controller = {
   },
 
   checkIfFollow: (req, res) => {
-    console.log(req.params);
     model.handleCheckFollow(req.params, (isFollowing) => {
       res.send(isFollowing);
     });
@@ -124,7 +123,6 @@ const controller = {
 
   logout: (req, res) => {
     model.destroySession(req.session, (response) => {
-      console.log('---response----', response);
       res.send(response);
     });
   },

@@ -192,3 +192,35 @@ div.filepicker {
 .dz-success-mark, .dz-error-mark, .dz-error-message {
   display: none;
 }
+
+.post-creator {
+  width: 80%;
+  margin: auto;
+  margin-top: 1%;
+}
+
+.post-panel {
+  width: 50%;
+  margin-top: 5%;
+}
+
+.submit-btn {
+  margin-top: 2%;
+}
+
+.successful-operation {
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hidden {
+  opacity: 0;
+  -webkit-transition: opacity 1s linear; /* Safari */
+  transition: opacity 1s linear;
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity 1s linear;
+}

@@ -71,8 +71,6 @@ module.exports.uploadMediaToStorage = (filePath, callback) => {
   // To upload larger files, use the chunked video upload method.
   // const mediaPath = path.join(__dirname, filePath);
   cloudinary.v2.uploader.upload(filePath, { resource_type: 'auto' }, (error, storedMediaInfo) => {
-    // console.log('media path', mediaPath);
-    // console.log('just file path', filePath);
     if (error) {
       console.log('error while uploading to cloudinary', error);
     }

@@ -192,7 +192,6 @@ module.exports.checkSession = (body, callback) => {
         username: body.user,
       })
       .then((response) => {
-        console.log('response', response); 
         callback(response);
       });
     // callback('valid user session');
