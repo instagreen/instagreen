@@ -29,6 +29,31 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
   });
 };
 
+module.exports.handleUpdateProfilePic = (body, callback) => {
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
+      displayImageUrl: body.displayImageUrl,
+    })
+    .then(callback);
+};
+
+module.exports.handleUpdateProfileBio = (body, callback) => {
+  console.log(body)
+  knex('users')
+    .where({ id: body.user_id })
+    .update({
+      bio: body.bio,
+    })
+    .then(callback);
+};
+
+module.exports.getExploreFeed = (cb) => {
+  knex('posts')
+    .select()
+    .then(cb);
+};
+
 module.exports.getPersonalPosts = (user_id, cb) => { // user_id the owner of the profile
   // find the posts that have the user_id as the owner
   knex('posts')

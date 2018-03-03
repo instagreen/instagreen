@@ -14,6 +14,18 @@ const controller = {
     });
   },
 
+  updateProfilePic: (req, res) => {
+    model.handleUpdateProfilePic(req.body, (status) => {
+      res.send(JSON.stringify(status));
+    });
+  },
+
+  updateProfileBio: (req, res) => {
+    model.handleUpdateProfileBio(req.body, (status) => {
+      res.send(JSON.stringify(status));
+    });
+  },
+
   createPost: (req, res) => {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
     // grab media from user
@@ -43,7 +55,7 @@ const controller = {
   },
 
   getAllPosts: (req, res) => {
-    res.status(200).send({ message: 'OK' });
+    model.getExploreFeed(exploreFeed => res.status(200).send(exploreFeed));
   },
 
   getAllFollowerPosts: ({ params }, res) => { // req.params = { params }

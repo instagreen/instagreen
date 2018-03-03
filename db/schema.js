@@ -11,6 +11,16 @@ const Schema = {
       nullable: false,
       unique: true,
     },
+    displayImageUrl: {
+      type: 'string',
+      maxlength: 255,
+      nullable: true,
+    },
+    bio: {
+      type: 'string',
+      maxlength: 255,
+      nullable: true,
+    },
     password: {
       type: 'string',
       maxlength: 255,

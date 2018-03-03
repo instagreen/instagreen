@@ -18,10 +18,14 @@ class Post extends React.Component {
     this.handleFollowRequest = this.handleFollowRequest.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
+      const temp = response.data[0].username;
+      if (temp.id === this.props.user_id) {
+        this.setState({ isFollowing: true });
+      }
       this.setState({
-        author: response.data[0].username,
+        author: temp,
       });
     });
 
@@ -43,7 +47,7 @@ class Post extends React.Component {
 
   handleEnter(e) {
     if (e.key === 'Enter' && this.state.comment.length) {
-      //TODO: ADD TO DB
+      // TODO: ADD TO DB
       apiCaller.handlePostCommentToDb(this.state.comment, this.props.user_id, this.props.post.id, (comment) => {
         this.setState({ comment: '' });
         this.renderComments();
@@ -53,7 +57,9 @@ class Post extends React.Component {
 
   handleFollowRequest() {
     apiCaller.sendFollowRequestToServer(this.props.user_id, this.props.post.user_id, (response) => {
-
+      if (response.status === 200) {
+        this.setState({ isRequested: true });
+      }
     });
   }
 
@@ -98,7 +104,10 @@ class Post extends React.Component {
           />
         </div>
         <div className="post-component-action-buttons">
-          {this.state.isFollowing ? null : <button disabled={this.state.isRequested} onClick={this.handleFollowRequest}>Follow</button>}
+          {this.state.isFollowing ? null :
+          <button disabled={this.state.isRequested} onClick={this.handleFollowRequest}>
+            {this.state.isRequested ? 'Follow Pending' : 'Follow'}
+          </button>}
           <button>Like</button>
         </div>
       </div>
