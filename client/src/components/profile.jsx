@@ -93,7 +93,9 @@ class Profile extends React.Component {
             <strong>Followers: </strong><em>{this.state.userInfo.follower_count}</em><br />
             <strong>Following: </strong><em>{this.state.userInfo.following_count}</em><br /><br />
             <div className="btn-group" role="group">
-              <button onClick={this.onEditClick} type="button" className="btn btn-outline-secondary">Edit</button>
+              <button onClick={this.onEditClick} type="button" className="btn btn-outline-secondary">
+                {this.state.renderEditComponent ? 'Cancel' : 'Edit'}
+              </button>
             </div>
           </div>
         </div>
