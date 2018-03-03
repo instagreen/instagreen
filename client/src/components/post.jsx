@@ -20,12 +20,12 @@ class Post extends React.Component {
 
   componentWillMount() {
     apiCaller.getUserInfo(this.props.post.user_id, (response) => {
-      const temp = response.data[0].username;
+      const temp = response.data[0];
       if (temp.id === this.props.user_id) {
         this.setState({ isFollowing: true });
       }
       this.setState({
-        author: temp,
+        author: temp.username,
       });
     });
 
@@ -83,9 +83,9 @@ class Post extends React.Component {
 
   render() {
     return (
-      <div className="post-component card row" style={{ width: '32rem' }} >
+      <div className="post-component card row" style={{ width: '60rem' }} >
         <div className="post-component-image">
-          <img alt="test" src={this.props.post.imgUrl} height="400" width="600" />
+          <img alt="test" src={this.props.post.imgUrl} height="auto" width="100%" />
         </div>
         <div className="post-component-description">
           <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em>

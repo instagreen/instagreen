@@ -1,5 +1,6 @@
 -- DUMMY IMAGE: 
--- http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png
+-- https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450
+-- https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg
 
 USE instagreen;
 
@@ -62,79 +63,79 @@ WHERE id = 1;
 -- ANTONIO
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (1, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (1, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (1, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 -- BRIAN
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (2, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (2, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (2, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 -- ARTHUR
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (3, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (3, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (3, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 -- MASTER CHIEF
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (4, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (4, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://i.pinimg.com/736x/67/74/cc/6774ccbd24f9aed12af9c485ff065008--wiener-dogs-dachshunds.jpg', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (4, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 -- BOWSER
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (5, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (5, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
 
 INSERT INTO posts (user_id, imgUrl, description, likes_count)
 VALUES (5, 
-'http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png', 
+'https://www.telegraph.co.uk/content/dam/films/2017/09/08/TELEMMGLPICT000139255438_trans_NvBQzQNjv4BqK2NjVBvaLbEUYr5Zhj8etX9NBJbfJ4XWKGgc5tcZdVg.jpeg?imwidth=450', 
 'this is a description of the picture. lorem ipsum and such...', 0);
