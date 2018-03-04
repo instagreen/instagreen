@@ -69,7 +69,6 @@ const controller = {
   },
 
   getCommentsOfPost: (req, res) => {
-    
     model.handleGetAllComments(req.params, (comments) => {
       res.status(200).send(comments);
     });
@@ -128,10 +127,13 @@ const controller = {
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
       req.session.user = req.body.username;
-      if (bcrypt.compareSync(user[0].password, bcrypt.hashSync(req.body.password, salt))) {
-        res.send(user);
-      }
-      res.send('invalid username/password combination');
+      bcrypt.compare(req.body.password, user[0].password).then((isMatch) => {
+        if (isMatch) {
+          res.send(isMatch);
+        } else {
+          res.send('error');
+        }
+      });
     });
   },
 
@@ -160,13 +162,6 @@ const controller = {
       res.send(thing);
     });
   },
-
-  // login: (req, res) => {
-  //   model.fetchUser(req.body, (user) => {
-  //     req.session.user = req.body.username;
-  //     res.send(user);
-  //   });
-  // },
 };
 
 module.exports.controller = controller;

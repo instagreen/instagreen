@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('---PROPS.USER_ID from APP!!!---', this.props.user_id);
     return (
       <div>
         <Feed username={this.state.username} user_id={this.state.user_id} feed={this.state.feed} />
