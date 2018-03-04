@@ -11,11 +11,14 @@ class Post extends React.Component {
       commentList: [],
       comment: '',
       author: '',
+      isLiked: false,
+      likesCount: props.post.likes_count,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.renderComments = this.renderComments.bind(this);
     this.handleFollowRequest = this.handleFollowRequest.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   componentWillMount() {
@@ -36,6 +39,11 @@ class Post extends React.Component {
         this.setState({ isRequested: true });
       }
     });
+    apiCaller.checkLiked(this.props.user_id, this.props.post.id, (item) => {
+      if (item.data.length) {
+        this.setState({ isLiked: true });
+      }
+    });
     this.renderComments();
   }
 
@@ -43,6 +51,25 @@ class Post extends React.Component {
     this.setState({
       comment: e.target.value,
     });
+  }
+
+  handleLike() {
+    const count = this.state.likesCount;
+    if (this.state.isLiked) {
+      apiCaller.handleUnlike(this.props.user_id, this.props.post.id, () => {
+        this.setState({
+          isLiked: false,
+          likesCount: count - 1,
+        });
+      });
+    } else {
+      apiCaller.handleLike(this.props.user_id, this.props.post.id, () => {
+        this.setState({
+          isLiked: true,
+          likesCount: count + 1,
+        });
+      });
+    }
   }
 
   handleEnter(e) {
@@ -88,7 +115,8 @@ class Post extends React.Component {
           <img alt="test" src={this.props.post.imgUrl} height="auto" width="100%" />
         </div>
         <div className="post-component-description">
-          <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em>
+          <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em><br />
+          {this.state.likesCount ? <span className="glyphicon glyphicon-heart">{this.state.likesCount}</span> : null}
         </div>
         <div className="post-component-comment-section">
           <Comments commentList={this.state.commentList} />
@@ -114,7 +142,12 @@ class Post extends React.Component {
           >
             {this.state.isRequested ? 'Follow Pending' : 'Follow'}
           </button>}
-          <button type="button" className="btn-sml btn-outline-info">Like</button>
+          <button
+            type="button"
+            className="btn-sml btn-outline-info"
+            onClick={this.handleLike}
+          >{this.state.isLiked ? 'Unlike' : 'Like'}
+          </button>
         </div>
       </div>
     );
