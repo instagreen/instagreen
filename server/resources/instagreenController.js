@@ -10,12 +10,6 @@ const controller = {
       res.send(data);
     });
   },
-  // this was converted to create post and utilized your model.addPostToDb
-  addPost: (req, res) => {
-    model.addPostToDb(req.body, (post) => {
-      res.send(post);
-    });
-  },
 
   updateProfilePic: (req, res) => {
     model.handleUpdateProfilePic(req.body, (status) => {
@@ -40,24 +34,16 @@ const controller = {
         // remove the uploaded media file
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
-        console.log('storedMediaInfo ====> ', storedMediaInfo);
-
-        const cloudinaryMediaUrl = storedMediaInfo.url;
-        // attatch the link with the user_id and description dump it in the in db
-        console.log('this is the req.body: =====> ', req.body);
+        // console.log('storedMediaInfo ====> ', storedMediaInfo);
+        // constructing the post object so it can be stored in the db
+        // afte we received the media url on cloudinary
         const postBody = {
           description: req.body.description,
           user_id: req.body.user_id,
-          imgUrl: cloudinaryMediaUrl,
+          imgUrl: storedMediaInfo.url,
         };
-
-        // testing example
-        // const postBody = {
-        //   description: 'test yo friend',
-        //   user_id: 1,
-        //   imgUrl: cloudinaryMediaUrl,
-        // };
         model.addPostToDb(postBody, (post) => {
+          // send the URL back to the client
           res.status(201).send(post);
         });
       });
@@ -83,7 +69,7 @@ const controller = {
   },
 
   getCommentsOfPost: (req, res) => {
-    console.log('req.params', req.params);
+    
     model.handleGetAllComments(req.params, (comments) => {
       res.status(200).send(comments);
     });
@@ -164,7 +150,6 @@ const controller = {
 
   logout: (req, res) => {
     model.destroySession(req.session, (response) => {
-      console.log('---response----', response);
       res.send(response);
     });
   },

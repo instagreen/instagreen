@@ -10,8 +10,6 @@ router.get('/follow/:target_id', controller.fetchFollowRequests);
 
 router.get('/username/:user_id', controller.getUserName);
 
-router.post('/post', controller.addPost);
-
 router.post('/post/create', multer({ dest: 'uploads' }).any(), controller.createPost);
 
 router.get('/user/:user_id', controller.getUserPosts);
