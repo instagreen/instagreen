@@ -117,6 +117,31 @@ module.exports.handleNewLike = (body, callback) => {
     });
 };
 
+module.exports.handleRemoveLike = (body, callback) => {
+  console.log(body);
+  knex('likes')
+    .where({
+      user_id: body.user_id,
+      post_id: body.post_id,
+    })
+    .delete()
+    .then(callback);
+
+  knex('posts').where({ id: body.post_id })
+    .increment('likes_count', -1)
+    .then(() => console.error('Testing'));
+};
+
+module.exports.handleGetLike = (params, callback) => {
+  knex('likes')
+    .select()
+    .where({
+      user_id: params.user_id,
+      post_id: params.post_id,
+    })
+    .then(callback);
+};
+
 module.exports.handleFollowRequest = (body, callback) => {
   knex('user_target_relation')
     .select()
