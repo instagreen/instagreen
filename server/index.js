@@ -6,7 +6,6 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const { router } = require('./resources/instagreenRouter');
 
-
 const port = 3000;
 const app = express();
 
@@ -18,7 +17,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 300000, // cookie set to 60 seconds for testing
+    expires: 300000, 
   },
 }));
 

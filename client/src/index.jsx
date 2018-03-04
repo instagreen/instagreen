@@ -8,8 +8,8 @@ import LogIn from './components/login.jsx';
 import router from './clientRouter.jsx';
 import wrapComponent from './componentWrapper.jsx';
 
-// *** refer to ./clientRouter.jsx for dynamic component rendering
-// *** reder to ./componentWrapper.jsx for higher order component function
+// refer to ./clientRouter.jsx for dynamic component rendering
+// refer to ./componentWrapper.jsx for higher order component function
 router.setup({
   app: wrapComponent(App),
   explore: wrapComponent(Explore),

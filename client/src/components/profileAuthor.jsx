@@ -1,7 +1,6 @@
 import React from 'react';
 import Post from './post.jsx';
 import apiCaller from '../apiCaller.js';
-import RequestInbox from './requestInbox.jsx';
 
 class ProfileAuthor extends React.Component {
   constructor(props) {
@@ -64,13 +63,11 @@ class ProfileAuthor extends React.Component {
   render() {
     return (
       <div id="profile-component" className="container">
-        <RequestInbox user_id={this.props.authorId} />
         <div className="row" id="profile-header">
           <div className="col-3">
             <img className="img-thumbnail" alt="" src={this.state.profilePic} />
             <button type="button" className="btn-sml btn-outline-secondary">Change Picture</button>
           </div>
-
           <div className="col-5">
             <h2>{this.state.displayName}</h2>
             {this.state.renderEditComponent ?

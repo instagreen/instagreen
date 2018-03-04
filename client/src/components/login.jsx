@@ -23,11 +23,11 @@ class LogIn extends React.Component {
   doLogIn() {
     const { username, password } = this.state;
     axios.post('/instagreen/login', { username, password }).then((response) => {
-      if (response.data.length === 0) {
-        console.log('Invalid username/password combination !!!, response.data', response.data);
-      } else {
-        console.log('Login successful: ', response.data);
+      if (response.data === true) {
         router.setRoute('app');
+      } else {
+        console.log('Invalid username/password combination!!!');
+        router.setRoute('login');
       }
     });
   }
@@ -36,7 +36,7 @@ class LogIn extends React.Component {
     axios.post('/instagreen/signup', {
       username: this.state.username,
       password: this.state.password,
-    }).then(response => console.log('--response', response));
+    }).then(response => console.log(`Account for ${response.data[0].username} has been created`));
   }
 
   handleSignUpClick() {

@@ -238,7 +238,7 @@ module.exports.addUserToDb = (body, callback) => {
           .then(id => knex('users').select().where('id', id))
           .then(callback);
       } else {
-        callback('ALREADY TAKEN');
+        callback('Username already taken!!!');
       }
     });
 };
@@ -250,16 +250,6 @@ module.exports.fetchUser = (body, callback) => {
     })
     .then(callback);
 };
-
-// module.exports.fetchUser = (body, callback) => {
-//   knex('users').select()
-//     .where({
-//       username: body.username,
-//       password: body.password,
-//     })
-//     .then(callback);
-// };
-// bcrypt.hashSync(body.password, salt)
 
 module.exports.handleGetAllComments = (params, callback) => {
   knex('comments')
@@ -278,7 +268,6 @@ module.exports.checkSession = (body, callback) => {
       .then((response) => {
         callback(response);
       });
-    // callback('valid user session');
   } else {
     callback('invalid user session');
   }

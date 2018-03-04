@@ -13,7 +13,6 @@ const wrapComponent = ComponentToWrap => class extends Component {
   }
   componentDidMount() {
     axios.get('/instagreen/verify').then((response) => {
-      // console.log('---response back to CDM', response);
       if (response.data === 'invalid user session') {
         router.setRoute('login');
       } else {
@@ -22,7 +21,6 @@ const wrapComponent = ComponentToWrap => class extends Component {
     });
   }
   render() {
-    // console.log('---entering WrapComponent');
     if (this.state.isLoading) {
       return (
         <div>
