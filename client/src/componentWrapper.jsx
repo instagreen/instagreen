@@ -33,7 +33,7 @@ const wrapComponent = ComponentToWrap => class extends Component {
     return (
       <div>
         <NavBar />
-        <ComponentToWrap user_id={this.state.user_id} />
+        <ComponentToWrap user_id={this.state.user_id} authorId={this.props.authorId} />
       </div>);
   }
 };

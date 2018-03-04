@@ -1,6 +1,7 @@
 import React from 'react';
 import Comments from './comments.jsx';
 import apiCaller from '../apiCaller.js';
+import router from '../clientRouter.jsx';
 
 class Post extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Post extends React.Component {
       commentList: [],
       comment: '',
       author: '',
+      authorId: null,
       isLiked: false,
       likesCount: props.post.likes_count,
     };
@@ -19,6 +21,7 @@ class Post extends React.Component {
     this.renderComments = this.renderComments.bind(this);
     this.handleFollowRequest = this.handleFollowRequest.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.renderAuthorProfile = this.renderAuthorProfile.bind(this);
   }
 
   componentWillMount() {
@@ -29,6 +32,7 @@ class Post extends React.Component {
       }
       this.setState({
         author: temp.username,
+        authorId: temp.id,
       });
     });
 
@@ -108,6 +112,10 @@ class Post extends React.Component {
     }, 500);
   }
 
+  renderAuthorProfile() {
+    router.setRoute('profileAuthor', this.state.authorId);
+  }
+
   render() {
     return (
       <div className="post-component card row" style={{ width: '60rem' }} >
@@ -115,7 +123,7 @@ class Post extends React.Component {
           <img alt="test" src={this.props.post.imgUrl} height="auto" width="100%" />
         </div>
         <div className="post-component-description">
-          <em><strong><a href="#">{this.state.author}</a>: </strong>{this.props.post.description}</em><br />
+          <em><strong><a href="#" onClick={() => { this.renderAuthorProfile(); }}>{this.state.author}</a>: </strong>{this.props.post.description}</em><br />
           {this.state.likesCount ? <span className="glyphicon glyphicon-heart">{this.state.likesCount}</span> : null}
         </div>
         <div className="post-component-comment-section">
