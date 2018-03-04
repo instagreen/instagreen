@@ -6,9 +6,9 @@ class ClientRouter {
     this.routes = routes;
   }
   // dynamic component rendering, determined by passed in route
-  setRoute(routeName) {
+  setRoute(routeName, id = null) {
     const CurrentComponent = this.routes[routeName];
-    ReactDOM.render(<CurrentComponent />, document.getElementById('app'));
+    ReactDOM.render(<CurrentComponent authorId={id} />, document.getElementById('app'));
   }
 }
 
