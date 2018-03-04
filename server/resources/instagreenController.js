@@ -76,9 +76,17 @@ const controller = {
   },
 
   addLike: (req, res) => {
-    model.handleNewLike(req.body, (thing) => {
-      res.send(thing);
+    model.handleNewLike(req.body, (like) => {
+      res.send(like);
     });
+  },
+
+  removeLike: (req, res) => {
+    model.handleRemoveLike(req.body, item => res.send(JSON.stringify(item)));
+  },
+
+  getLike: (req, res) => {
+    model.handleGetLike(req.params, entry => res.send(entry));
   },
 
   addNewComment: (req, res) => {

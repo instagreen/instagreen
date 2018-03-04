@@ -127,6 +127,38 @@ const apiCaller = {
       });
   },
 
+  handleLike: (user_id, post_id, cb) => {
+    axios.post(`${SERVER}/post/like`, {
+      user_id,
+      post_id,
+    })
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to process new Like -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
+
+  handleUnlike: (user_id, post_id, cb) => {
+    axios.delete(`${SERVER}/post/like`, {
+      data: {
+        user_id,
+        post_id,
+      },
+    })
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to unlike -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
+
+  checkLiked: (user_id, post_id, cb) => {
+    axios.get(`${SERVER}/like/${post_id}/${user_id}`)
+      .then(cb)
+      .catch((error) => {
+        console.log(`Error while trying to check like -> apiCallers.js -> ${error.lineNumber}`, error);
+      });
+  },
+
 };
 
 export default apiCaller;

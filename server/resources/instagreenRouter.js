@@ -21,7 +21,9 @@ router.get('/explore', controller.getAllPosts);
 
 router.get('/feed/:user_id', controller.getAllFollowerPosts);
 
+router.get('/like/:post_id/:user_id', controller.getLike);
 router.post('/post/like', controller.addLike);
+router.delete('/post/like', controller.removeLike);
 
 router.get('/post/comment/:post_id', controller.getCommentsOfPost);
 router.post('/post/comment', controller.addNewComment);
