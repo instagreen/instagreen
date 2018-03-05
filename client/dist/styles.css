@@ -3,11 +3,28 @@ html, body, #app {
   height: 100%;
 }
 
+.post-component-description {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.post-component {
+  margin-bottom: 10px;
+}
+
 .avatar {
   position: relative;
   top: -50px;
   margin-bottom: -50px;
 }
+
+#profile-header {
+  margin-top: 10px;
+  background-color: ghostwhite;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
 
 
 #parent {
