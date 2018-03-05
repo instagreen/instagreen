@@ -13,10 +13,13 @@ class Profile extends React.Component {
       profilePic: '',
       renderEditComponent: false,
       displayName: '',
+      profilePictureFile: null,
     };
     this.handleBioChange = this.handleBioChange.bind(this);
     this.updateBio = this.updateBio.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+    this.updateProfilePicture = this.updateProfilePicture.bind(this);
   }
 
   componentWillMount() {
@@ -45,12 +48,24 @@ class Profile extends React.Component {
     });
   }
 
+  handleFileChange(e) {
+    this.setState({ profilePictureFile: e.target.files[0] });
+  }
+
   handleBioChange(e) {
     this.setState({
       bioPlaceholder: e.target.value,
     });
   }
-
+  
+  updateProfilePicture() {
+    const serverEndPoint = '/profile/picture';
+    const method = 'put';
+    apiCaller.sendMediaToServer(this.state.profilePictureFile, { user_id: this.state.userInfo.id }, serverEndPoint, method,(response) => {
+      const uploadedProfilePicture = response.data;
+      this.setState({ profilePic: uploadedProfilePicture });
+    });
+  }
   updateBio() {
     apiCaller.handleUpdateBio(this.state.userInfo.id, this.state.bioPlaceholder, (response) => {
       if (response.status === 200) {
@@ -61,14 +76,31 @@ class Profile extends React.Component {
     });
   }
 
+//   <div class="image-upload">
+//     <label for="file-input">
+//         <img src="placeholder.jpg"/>
+//     </label>
+
+//     <input id="file-input" type="file"/>
+// </div>
+
   render() {
     return (
       <div id="profile-component" className="container">
         <RequestInbox user_id={this.props.user_id} />
         <div className="row" id="profile-header">
           <div className="col-3">
-            <img className="img-thumbnail" alt="" src={this.state.profilePic} />
-            <button type="button" className="btn-sml btn-outline-secondary">Change Picture</button>
+            
+            <form method="put" encType="multipart/form-data">
+              <label className="upload-profile-picture" >
+                <img className="img-thumbnail image" alt="" src={this.state.profilePic} />
+                  <input hidden type="file" id="profile-picture-upload" name="file" onChange={this.handleFileChange} multiple  />
+                <div className="middle">
+                  <div className="text">Upload</div>
+                </div>
+              </label>
+              <button type="button" onClick={this.updateProfilePicture} className="btn btn-outline-secondary">Submit</button>
+            </form>
           </div>
 
           <div className="col-5">
@@ -83,7 +115,7 @@ class Profile extends React.Component {
                 />
                 <button
                   type="button"
-                  className="btn-sml btn-outline-secondary"
+                  className="btn btn-outline-secondary"
                   onClick={this.updateBio}
                 >Update
                 </button>

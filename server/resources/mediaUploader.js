@@ -31,7 +31,6 @@ module.exports.saveMediaToUploads = (files, cb) => {
   //   path: 'uploads/0ff280cd055b8deea89cbbfef5dbc0b6',
   //   size: 288024
   // }
-
   const file = files[0] || files;
   const fileNameParts = file.originalname.split('.');
   const fileName = fileNameParts[0];
@@ -75,6 +74,17 @@ module.exports.uploadMediaToStorage = (filePath, callback) => {
       console.log('error while uploading to cloudinary', error);
     }
     callback(storedMediaInfo);
+  });
+};
+
+// ======================= media deleter
+module.exports.deleteMediaFromCloudinary = (public_id, callback) => {
+  cloudinary.v2.uploader.destroy(public_id, (error, result) => {
+    if (error) {
+      console.log('error while trying to delete media from cloudinary', error);
+    }
+    console.log('Media file deleted from cloudinary', result);
+    callback(result);
   });
 };
 

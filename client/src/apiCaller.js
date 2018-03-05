@@ -34,7 +34,6 @@ const apiCaller = {
   getPersonalPosts: (user_id, cb) => {
     axios.get(`${SERVER}/user/${user_id}`)
       .then((personalPosts) => {
-        console.log('Here is the personal posts I got', personalPosts);
         cb(personalPosts);
       })
       .catch((error) => {
@@ -86,18 +85,21 @@ const apiCaller = {
         console.log(`Error while trying to send follow request to db -> apiCallers.js -> ${error.lineNumber}`, error);
       });
   },
-  sendMediaToServer: (file, body, cb) => {
+  sendMediaToServer: (file, body, endPoint, method, cb) => {
     // grouping the file with the form fields
     const formData = new FormData();
     formData.append('file', file);
-    const properties = Object.entries(body);
-    properties.forEach((propertyTupal) => {
-      // adding the form fields as properties on the request
-      // Key value pair
-      formData.set(propertyTupal[0], propertyTupal[1]);
-    });
+    if (body) {
+      const properties = Object.entries(body);
+      properties.forEach((propertyTupal) => {
+        // adding the form fields as properties on the request
+        // Key value pair
+        formData.set(propertyTupal[0], propertyTupal[1]);
+      });
+    }
+
     // sending file and fields to server
-    axios.post(`${SERVER}/post/create`, formData, {
+    axios[method](`${SERVER}${endPoint}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

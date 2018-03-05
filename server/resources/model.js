@@ -29,12 +29,24 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
 };
 
 module.exports.handleUpdateProfilePic = (body, callback) => {
+  console.log('body before the update happens', body);
   knex('users')
     .where({ id: body.user_id })
     .update({
+      picCloudinaryId: body.picCloudinaryId,
       displayImageUrl: body.displayImageUrl,
     })
     .then(callback);
+
+};
+
+module.exports.getPofilePicCloudinaryId = (user_id, callback) => {
+  knex('users')
+    .where({ id: user_id })
+    .select('picCloudinaryId')
+    .then((results) => {
+      callback(results[0].picCloudinaryId);
+    });
 };
 
 module.exports.handleUpdateProfileBio = (body, callback) => {

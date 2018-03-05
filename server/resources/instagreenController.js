@@ -12,8 +12,36 @@ const controller = {
   },
 
   updateProfilePic: (req, res) => {
-    model.handleUpdateProfilePic(req.body, (status) => {
-      res.send(JSON.stringify(status));
+    const file = req.files[0];
+    const user_id = req.body.user_id;
+
+    model.getPofilePicCloudinaryId(user_id, (picCloudinaryId) => {
+      // save a reference to the old profile pic id at cloudinary to be removed
+      // after uploading pic
+      const oldPicCloudinaryId = picCloudinaryId;
+      // save it to local uploads!
+      mediaUploader.saveMediaToUploads(file, (mediaFilePath) => {
+        // upload it to cloudinary
+        mediaUploader.uploadMediaToStorage(mediaFilePath, (storedMediaInfo) => {
+          // remove the uploaded media file
+          mediaUploader.removeTempFile(mediaFilePath);
+          // get the link to it
+          // constructing the profile pic info object so it can be stored in the db
+          // after we received the media url on cloudinary
+          const profilePicInfo = {
+            user_id,
+            picCloudinaryId: storedMediaInfo.public_id,
+            displayImageUrl: storedMediaInfo.url,
+          };
+          model.handleUpdateProfilePic(profilePicInfo, () => {
+            // delete the old profile picture stored in cloudinary
+            mediaUploader.deleteMediaFromCloudinary(oldPicCloudinaryId, () => {
+              // send the new profile pic URL back to the client
+              res.status(200).send(storedMediaInfo.url);
+            });
+          });
+        });
+      });
     });
   },
 
@@ -27,14 +55,13 @@ const controller = {
     // console.log(req.body); // we'd pass in the post_id to link to the uploaded media
     // grab media from user
     const file = req.files[0];
-    // save it!
+    // save it to local uploads!
     mediaUploader.saveMediaToUploads(file, (mediaFilePath) => {
       // upload it to cloudinary
       mediaUploader.uploadMediaToStorage(mediaFilePath, (storedMediaInfo) => {
         // remove the uploaded media file
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
-        // console.log('storedMediaInfo ====> ', storedMediaInfo);
         // constructing the post object so it can be stored in the db
         // afte we received the media url on cloudinary
         const postBody = {
