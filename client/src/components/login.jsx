@@ -9,6 +9,7 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
+      invalidUsernamePasswordError: '',
       displaySuccessPanel: 'hidden-element',
       displayFailurePanel: 'hidden-element',
       currentComponent: 'login',
@@ -28,6 +29,7 @@ class LogIn extends React.Component {
       if (response.data === true) {
         router.setRoute('app');
       } else if (response.data === false) {
+        this.setState({ invalidUsernamePasswordError: 'password' });
         // render the failure message
         this.setState({ displayFailurePanel: 'visible-element' });
         // display it for 2 seconds and hide it
@@ -36,7 +38,13 @@ class LogIn extends React.Component {
         }).bind(this), 2000);
         router.setRoute('login');
       } else {
-        console.log(response.data); // message for Arthur
+        this.setState({ invalidUsernamePasswordError: 'username' });
+        // render the failure message
+        this.setState({ displayFailurePanel: 'visible-element' });
+        // display it for 2 seconds and hide it
+        setTimeout((() => {
+          this.setState({ displayFailurePanel: 'hidden-element' });
+        }).bind(this), 2000);        
       }
     });
   }
@@ -67,7 +75,7 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'login') {
       return (
         <div id="parent" align="center">
-        <p className={`alert login-message alert-danger alert-operation ${this.state.displayFailurePanel}`}>Invalid username/password combination! #PackYourBags</p>
+        <p className={`alert login-message alert-danger alert-operation ${this.state.displayFailurePanel}`}>Invalid {this.state.invalidUsernamePasswordError}! #PackYourBags</p>
           <div>
             <h2 id="header">Instagreen</h2>
           </div>
