@@ -10,6 +10,8 @@ class LogIn extends React.Component {
       username: '',
       password: '',
       invalidUsernamePasswordError: '',
+      signupAlertMessage: '',
+      bootstrapClassStatusType: '',
       displaySuccessPanel: 'hidden-element',
       displayFailurePanel: 'hidden-element',
       currentComponent: 'login',
@@ -30,18 +32,14 @@ class LogIn extends React.Component {
         router.setRoute('app');
       } else if (response.data === false) {
         this.setState({ invalidUsernamePasswordError: 'password' });
-        // render the failure message
         this.setState({ displayFailurePanel: 'visible-element' });
-        // display it for 2 seconds and hide it
         setTimeout((() => {
           this.setState({ displayFailurePanel: 'hidden-element' });
         }).bind(this), 2000);
         router.setRoute('login');
       } else {
         this.setState({ invalidUsernamePasswordError: 'username' });
-        // render the failure message
         this.setState({ displayFailurePanel: 'visible-element' });
-        // display it for 2 seconds and hide it
         setTimeout((() => {
           this.setState({ displayFailurePanel: 'hidden-element' });
         }).bind(this), 2000);        
@@ -53,13 +51,23 @@ class LogIn extends React.Component {
     axios.post('/instagreen/signup', {
       username: this.state.username,
       password: this.state.password,
-    }).then(() => {
-      // render the success message
-      this.setState({ displaySuccessPanel: 'visible-element' });
-      // display it for 2 seconds and hide it
-      setTimeout((() => {
-        this.setState({ displaySuccessPanel: 'hidden-element' });
-      }).bind(this), 2000);
+    }).then((response) => {
+      if (response.data.length > 0) {
+        this.setState({ signupAlertMessage: `Account successfully created for ${response.data[0].username}` });
+        this.setState({ bootstrapClassStatusType: 'alert-success' });
+        this.setState({ displaySuccessPanel: 'visible-element' });
+        setTimeout((() => {
+          this.setState({ displaySuccessPanel: 'hidden-element' });
+        }).bind(this), 2000);
+      } else {
+        this.setState({ signupAlertMessage: 'Username already taken.' });
+        this.setState({ bootstrapClassStatusType: 'alert-danger' });
+        this.setState({ displaySuccessPanel: 'visible-element' });
+        this.setState({ displaySuccessPanel: 'visible-element' });
+        setTimeout((() => {
+          this.setState({ displaySuccessPanel: 'hidden-element' });
+        }).bind(this), 2000);        
+      }
     });
   }
 
@@ -93,7 +101,7 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'signup') {
       return (
         <div id="parent" align="center">
-        <p className={`alert login-message alert-success alert-operation ${this.state.displaySuccessPanel}`}>Account for {this.state.username} has been created!</p>
+          <p className={`alert login-message ${this.state.bootstrapClassStatusType} alert-operation ${this.state.displaySuccessPanel}`}>{this.state.signupAlertMessage}</p>
           <div>
             <h2 id="header">Instagreen</h2>
           </div>
