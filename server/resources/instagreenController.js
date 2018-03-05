@@ -153,14 +153,19 @@ const controller = {
 
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
-      bcrypt.compare(req.body.password, user[0].password).then((isMatch) => {
-        if (isMatch === true) {
-          req.session.user = req.body.username;
-          res.send(isMatch);
-        } else {
-          res.send(false);
-        }
-      });
+      console.log('user', user);
+      if (user.length > 0) {
+        bcrypt.compare(req.body.password, user[0].password).then((isMatch) => {
+          if (isMatch === true) {
+            req.session.user = req.body.username;
+            res.send(isMatch);
+          } else {
+            res.send(false);
+          }
+        });
+      } else {
+        res.send('Username does not exist. Please sign up.');
+      }
     });
   },
 
