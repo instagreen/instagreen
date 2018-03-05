@@ -145,6 +145,10 @@ div.filepicker {
   border: 2px dashed #C7C7C7;
 }
 
+.dz-default.dz-message {
+  cursor: pointer;
+}
+
 /* Icon */
 .filepicker-file-icon
 {
@@ -231,14 +235,52 @@ div.filepicker {
   padding-right: 0;
 }
 
-.hiddenElement {
+.hidden-element {
   opacity: 0;
   -webkit-transition: opacity 1s linear; /* Safari */
   transition: opacity 1s linear;
 }
 
-.visibleElement {
+.visible-element {
   opacity: 1;
   -webkit-transition: opacity 1s linear; /* Safari */
   transition: opacity 1s linear;
+}
+
+.image {
+  cursor: pointer;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.text {
+  color: inherit;
+  font-size: 16px;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.upload-profile-picture:hover .image {
+  opacity: 0.3;
+}
+
+.upload-profile-picture:hover .middle {
+  opacity: 1;
+}
+
+.post-component-comment-section {
+  background-color: inherit;
 }

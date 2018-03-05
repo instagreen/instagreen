@@ -31,7 +31,6 @@ module.exports.saveMediaToUploads = (files, cb) => {
   //   path: 'uploads/0ff280cd055b8deea89cbbfef5dbc0b6',
   //   size: 288024
   // }
-
   const file = files[0] || files;
   const fileNameParts = file.originalname.split('.');
   const fileName = fileNameParts[0];

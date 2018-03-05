@@ -144,7 +144,7 @@ class Post extends React.Component {
           {this.state.isFollowing ? null :
           <button
             type="button"
-            className="btn-sml btn-outline-info"
+            className="btn btn-outline-secondary"
             disabled={this.state.isRequested}
             onClick={this.handleFollowRequest}
           >
@@ -152,7 +152,7 @@ class Post extends React.Component {
           </button>}
           <button
             type="button"
-            className="btn-sml btn-outline-info"
+            className="btn btn-outline-secondary"
             onClick={this.handleLike}
           >{this.state.isLiked ? 'Unlike' : 'Like'}
           </button>

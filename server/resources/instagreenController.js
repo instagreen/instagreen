@@ -19,7 +19,6 @@ const controller = {
       // save a reference to the old profile pic id at cloudinary to be removed
       // after uploading pic
       const oldPicCloudinaryId = picCloudinaryId;
-      console.log('oldPicCloudinaryId', oldPicCloudinaryId);
       // save it to local uploads!
       mediaUploader.saveMediaToUploads(file, (mediaFilePath) => {
         // upload it to cloudinary
@@ -34,7 +33,6 @@ const controller = {
             picCloudinaryId: storedMediaInfo.public_id,
             displayImageUrl: storedMediaInfo.url,
           };
-          console.log('profilePicInfo', profilePicInfo);
           model.handleUpdateProfilePic(profilePicInfo, () => {
             // delete the old profile picture stored in cloudinary
             mediaUploader.deleteMediaFromCloudinary(oldPicCloudinaryId, () => {

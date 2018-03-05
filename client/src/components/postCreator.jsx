@@ -10,7 +10,7 @@ class PostCreator extends React.Component {
     this.state = {
       description: '',
       file: null,
-      displaySuccessPanel: 'hiddenElement',
+      displaySuccessPanel: 'hidden-element',
       dropzoneObj: null,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -45,12 +45,15 @@ class PostCreator extends React.Component {
       description: this.state.description || '',
       user_id: this.props.user_id,
     };
-    apiCaller.sendMediaToServer(this.state.file, postBody, ((res) => {
+    // where to handle post creation in the server
+    const serverEndPoint = '/post/create';
+    const method = 'post';
+    apiCaller.sendMediaToServer(this.state.file, postBody, serverEndPoint, method, (() => {
       // render the success message
-      this.setState({ displaySuccessPanel: 'visibleElement' });
+      this.setState({ displaySuccessPanel: 'visible-element' });
       // display it for 4 seconds and hide it
       setTimeout((() => {
-        this.setState({ displaySuccessPanel: 'hiddenElement' });
+        this.setState({ displaySuccessPanel: 'hidden-element' });
       }).bind(this), 4000);
       // clear the text area
       this.setState({ description: '' });
@@ -71,7 +74,7 @@ class PostCreator extends React.Component {
         />
         <div className="container form-group post-panel">
           <textarea onChange={this.handleChange} value={this.state.description} className="form-control" placeholder="description..." id="exampleTextarea" rows="3" />
-          <button type="submit" onClick={this.handleClick} className="btn btn-primary submit-btn">Post</button>
+          <button type="submit" onClick={this.handleClick} className="btn btn-outline-secondary submit-btn">Post</button>
         </div>
       </div>
     );
