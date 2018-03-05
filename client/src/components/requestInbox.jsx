@@ -50,6 +50,7 @@ class RequestInbox extends React.Component {
       return (
         <div id="request-inbox">
           <i className="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }} />
+          {this.state.requests.length ? <span class="badge badge-secondary">Pending</span> : null}
           <table>
             <tbody>
               {this.state.requests.map((req) => {
@@ -69,6 +70,7 @@ class RequestInbox extends React.Component {
     return (
       <div id="request-inbox">
           <i className="glyphicon glyphicon-envelope" onClick={() => { this.toggleInbox(); }} />
+          {this.state.requests.length ? <span class="badge badge-secondary">Pending</span> : null}
       </div>
     );
   }
