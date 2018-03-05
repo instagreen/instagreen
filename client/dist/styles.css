@@ -229,7 +229,7 @@ div.filepicker {
   margin-top: 2%;
 }
 
-.successful-operation {
+.alert-operation {
   text-align: center;
   padding-left: 0;
   padding-right: 0;
@@ -283,4 +283,10 @@ div.filepicker {
 
 .post-component-comment-section {
   background-color: inherit;
+}
+
+.login-message.alert-danger, .login-message.alert-success{
+  width: 80%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
