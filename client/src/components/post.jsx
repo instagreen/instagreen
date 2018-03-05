@@ -120,7 +120,13 @@ class Post extends React.Component {
     return (
       <div className="post-component card row" style={{ width: '60rem' }} >
         <div className="post-component-image">
-          <img alt="test" src={this.props.post.imgUrl} height="auto" width="100%" />
+          <img
+            alt="test"
+            src={this.props.post.imgUrl} 
+            height="auto"
+            width="100%"
+            onDoubleClick={this.handleLike}
+          />
         </div>
         <div className="post-component-description">
           <em><strong><a href="#" onClick={() => { this.renderAuthorProfile(); }}>{this.state.author}</a>: </strong>{this.props.post.description}</em><br />
