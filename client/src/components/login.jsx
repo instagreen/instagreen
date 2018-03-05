@@ -25,9 +25,11 @@ class LogIn extends React.Component {
     axios.post('/instagreen/login', { username, password }).then((response) => {
       if (response.data === true) {
         router.setRoute('app');
-      } else {
+      } else if (response.data === false) {
         console.log('Invalid username/password combination!!!');
         router.setRoute('login');
+      } else {
+        console.log(response.data); // message for Arthur
       }
     });
   }

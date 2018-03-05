@@ -153,7 +153,6 @@ const controller = {
 
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
-      console.log('user', user);
       if (user.length > 0) {
         bcrypt.compare(req.body.password, user[0].password).then((isMatch) => {
           if (isMatch === true) {
