@@ -53,13 +53,16 @@ class LogIn extends React.Component {
     axios.post('/instagreen/signup', {
       username: this.state.username,
       password: this.state.password,
-    }).then(() => {
-      // render the success message
-      this.setState({ displaySuccessPanel: 'visible-element' });
-      // display it for 2 seconds and hide it
-      setTimeout((() => {
-        this.setState({ displaySuccessPanel: 'hidden-element' });
-      }).bind(this), 2000);
+    }).then((response) => {
+      if (response.data.length > 0) {
+        this.setState({ displaySuccessPanel: 'visible-element' });
+        // display it for 2 seconds and hide it
+        setTimeout((() => {
+          this.setState({ displaySuccessPanel: 'hidden-element' });
+        }).bind(this), 2000);
+      } else {
+        console.log('Username already taken!');
+      }
     });
   }
 

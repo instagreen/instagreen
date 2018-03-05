@@ -250,7 +250,7 @@ module.exports.addUserToDb = (body, callback) => {
           .then(id => knex('users').select().where('id', id))
           .then(callback);
       } else {
-        callback('Username already taken!!!');
+        callback([]);
       }
     });
 };
