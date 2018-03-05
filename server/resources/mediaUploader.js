@@ -78,6 +78,17 @@ module.exports.uploadMediaToStorage = (filePath, callback) => {
   });
 };
 
+// ======================= media deleter
+module.exports.deleteMediaFromCloudinary = (public_id, callback) => {
+  cloudinary.v2.uploader.destroy(public_id, (error, result) => {
+    if (error) {
+      console.log('error while trying to delete media from cloudinary', error);
+    }
+    console.log('Media file deleted from cloudinary', result);
+    callback(result);
+  });
+};
+
 // uploadMediaToStorage(path.join(__dirname, './test.png'));
 
 // cloudinary response sample

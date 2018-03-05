@@ -11,6 +11,11 @@ const Schema = {
       nullable: false,
       unique: true,
     },
+    picCloudinaryId: {
+      type: 'string',
+      maxlength: 255,
+      nullable: true,
+    },
     displayImageUrl: {
       type: 'string',
       maxlength: 255,

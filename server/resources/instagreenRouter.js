@@ -10,7 +10,8 @@ router.get('/follow/:target_id', controller.fetchFollowRequests);
 router.get('/username/:user_id', controller.getUserName);
 router.post('/post/create', multer({ dest: 'uploads' }).any(), controller.createPost);
 router.get('/user/:user_id', controller.getUserPosts);
-router.put('/profile/picture', controller.updateProfilePic);
+
+router.put('/profile/picture', multer({ dest: 'uploads' }).any(), controller.updateProfilePic);
 router.put('/profile/bio', controller.updateProfileBio);
 router.get('/explore', controller.getAllPosts);
 router.get('/feed/:user_id', controller.getAllFollowerPosts);
@@ -25,7 +26,7 @@ router.get('/verify', controller.verify);
 router.get('/logout', controller.logout);
 
 // DEV only
-router.all('/test', controller.test);
+router.all('/test', multer({ dest: 'uploads' }).any(), controller.test);
 
 module.exports.router = router;
 
