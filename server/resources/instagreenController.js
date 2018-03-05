@@ -153,12 +153,12 @@ const controller = {
 
   login: (req, res) => {
     model.fetchUser(req.body, (user) => {
-      req.session.user = req.body.username;
       bcrypt.compare(req.body.password, user[0].password).then((isMatch) => {
-        if (isMatch) {
+        if (isMatch === true) {
+          req.session.user = req.body.username;
           res.send(isMatch);
         } else {
-          res.send('error');
+          res.send(false);
         }
       });
     });
@@ -180,13 +180,6 @@ const controller = {
   logout: (req, res) => {
     model.destroySession(req.session, (response) => {
       res.send(response);
-    });
-  },
-
-  // DEV only
-  test: (req, res) => {
-    model.test(req.body, (thing) => {
-      res.send(thing);
     });
   },
 };
