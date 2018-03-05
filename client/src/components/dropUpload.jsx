@@ -5,7 +5,7 @@ const dropzoneConfigs = {
   componentConfig: {
     iconFiletypes: ['.jpg', '.png', '.mp4', '.jpeg'],
     showFiletypeIcon: true,
-    // postUrl: '/instagreen/post/create',
+    // postUrl: '/instagreen/post/create', for dropzone component auto upload
     postUrl: 'no-url',
   },
   djsConfig: {
@@ -20,16 +20,6 @@ const dropzoneConfigs = {
     )
   },
 };
-
-// const djsConfig = {
-//   previewTemplate: ReactDOMServer.renderToStaticMarkup(
-//     <div className="dz-preview dz-file-preview">
-//       <div className="dz-details">
-//         <img data-dz-thumbnail="true" />
-//       </div>
-//     </div>
-//   )
-// };
 
 
 export default dropzoneConfigs;

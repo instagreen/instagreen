@@ -66,7 +66,7 @@ class PostCreator extends React.Component {
     // console.log('--this.PROPS.USER_ID from POSTCREATOR', this.props.user_id);
     return (
       <div className="post-creator">
-        <p className={`alert alert-success successful-operation ${this.state.displaySuccessPanel}`}>Your media file was uploaded successfully!</p>
+        <p className={`alert alert-success alert-operation ${this.state.displaySuccessPanel}`}>Your media file was uploaded successfully!</p>
         <DropzoneComponent
           config={dropzoneConfigs.componentConfig}
           djsConfig={dropzoneConfigs.djsConfig}

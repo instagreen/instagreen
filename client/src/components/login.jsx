@@ -9,6 +9,9 @@ class LogIn extends React.Component {
     this.state = {
       username: '',
       password: '',
+      invalidUsernamePasswordError: '',
+      displaySuccessPanel: 'hidden-element',
+      displayFailurePanel: 'hidden-element',
       currentComponent: 'login',
     };
   }
@@ -26,10 +29,22 @@ class LogIn extends React.Component {
       if (response.data === true) {
         router.setRoute('app');
       } else if (response.data === false) {
-        console.log('Invalid username/password combination!!!');
+        this.setState({ invalidUsernamePasswordError: 'password' });
+        // render the failure message
+        this.setState({ displayFailurePanel: 'visible-element' });
+        // display it for 2 seconds and hide it
+        setTimeout((() => {
+          this.setState({ displayFailurePanel: 'hidden-element' });
+        }).bind(this), 2000);
         router.setRoute('login');
       } else {
-        console.log(response.data); // message for Arthur
+        this.setState({ invalidUsernamePasswordError: 'username' });
+        // render the failure message
+        this.setState({ displayFailurePanel: 'visible-element' });
+        // display it for 2 seconds and hide it
+        setTimeout((() => {
+          this.setState({ displayFailurePanel: 'hidden-element' });
+        }).bind(this), 2000);        
       }
     });
   }
@@ -38,7 +53,14 @@ class LogIn extends React.Component {
     axios.post('/instagreen/signup', {
       username: this.state.username,
       password: this.state.password,
-    }).then(response => console.log(`Account for ${response.data[0].username} has been created`));
+    }).then(() => {
+      // render the success message
+      this.setState({ displaySuccessPanel: 'visible-element' });
+      // display it for 2 seconds and hide it
+      setTimeout((() => {
+        this.setState({ displaySuccessPanel: 'hidden-element' });
+      }).bind(this), 2000);
+    });
   }
 
   handleSignUpClick() {
@@ -53,6 +75,7 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'login') {
       return (
         <div id="parent" align="center">
+        <p className={`alert login-message alert-danger alert-operation ${this.state.displayFailurePanel}`}>Invalid {this.state.invalidUsernamePasswordError}! #PackYourBags</p>
           <div>
             <h2 id="header">Instagreen</h2>
           </div>
@@ -70,6 +93,7 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'signup') {
       return (
         <div id="parent" align="center">
+        <p className={`alert login-message alert-success alert-operation ${this.state.displaySuccessPanel}`}>Account for {this.state.username} has been created!</p>
           <div>
             <h2 id="header">Instagreen</h2>
           </div>
