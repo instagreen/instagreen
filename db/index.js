@@ -10,8 +10,10 @@ const mysql = require('mysql');
 // });
 
 module.exports.connection = mysql.createConnection({
-  host: 'instagreen.cg33syvifjip.us-west-1.rds.amazonaws.com',
+  host: '',
   user: 'root',
   database: 'instagreen',
-  password: '123456789',
+  password: '',
+  // port: 3306,
 });
+console.log('this shouldnt show');

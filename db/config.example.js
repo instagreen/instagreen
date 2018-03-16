@@ -1,1 +1,5 @@
-module.exports.password = '';
+module.exports = {
+  dbHostName: '',
+  password: '',
+  port: 0,
+};
