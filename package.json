@@ -10,7 +10,7 @@
     "build-db": "node ./db/tableCreator.js && mysql -u root < ./db/foreignKeyCreator.sql",
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql",
-    "start" : "npm-run-all -p build-db test-data server-dev react-dev"
+    "start": "npm-run-all -p build-db test-data server-dev react-dev"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "morgan": "^1.9.0",
+    "npm-run-all": "^4.1.2",
     "webpack": "^3.11.0"
   },
   "dependencies": {
