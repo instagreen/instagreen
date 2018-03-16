@@ -9,7 +9,8 @@
     "server-dev": "nodemon server/index.js",
     "build-db": "node ./db/tableCreator.js && mysql -u root < ./db/foreignKeyCreator.sql",
     "seed-data": "node ./db/dataSeed.js",
-    "test-data": "mysql -u root < ./db/testDataSeeder.sql"
+    "test-data": "mysql -u root < ./db/testDataSeeder.sql",
+    "start" : "npm-run-all -p build-db test-data server-dev react-dev"
   },
   "repository": {
     "type": "git",
