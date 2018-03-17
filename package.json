@@ -11,7 +11,7 @@
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql",
     "build": "npm-run-all -s build-db test-data",
-    "start": "npm-run-all -p build server-dev react-dev"
+    "start": "npm-run-all -p server-dev react-dev"
   },
   "repository": {
     "type": "git",
