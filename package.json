@@ -10,7 +10,8 @@
     "build-db": "node ./db/tableCreator.js && mysql -u root < ./db/foreignKeyCreator.sql",
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql",
-    "start": "npm-run-all -p build-db test-data server-dev react-dev"
+    "build": "npm-run-all -s build-db test-data",
+    "start": "npm-run-all -p build server-dev react-dev"
   },
   "repository": {
     "type": "git",

@@ -3,9 +3,9 @@ const { password } = require('./config.example.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'instagreen.cg33syvifjip.us-west-1.rds.amazonaws.com',
+    host: 'localhost',
     user: 'root',
-    password: '123456789',
+    password: '',
     database: 'instagreen',
     charset: 'utf8',
   },
