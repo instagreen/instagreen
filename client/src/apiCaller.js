@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER = 'http://localhost:3000/instagreen';
+const SERVER = 'http://ec2-13-57-181-181.us-west-1.compute.amazonaws.com:3000/instagreen';
 
 const apiCaller = {
   getFeed: (user_id, cb) => {
