@@ -10,9 +10,9 @@ const mysql = require('mysql');
 // });
 // console.log('this shouldnt show');
 module.exports.connection = mysql.createConnection({
-  host: 'localhost',
+  host: dbHostName,
   user: 'root',
   database: 'instagreen',
   password,
-  // port,
+  port,
 });

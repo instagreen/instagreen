@@ -2,12 +2,12 @@ const { dbHostName, password, port } = require('./../../db/config.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
+    host: dbHostName,
     user: 'root',
     password,
     database: 'instagreen',
     charset: 'utf8',
-    // port,
+    port,
   },
   useNullAsDefault: true,
 });
