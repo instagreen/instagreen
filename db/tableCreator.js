@@ -1,13 +1,14 @@
 const { Schema } = require('./schema');
-const { password } = require('./config.example.js');
+const { dbHostName, password, port } = require('./config.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
+    host: dbHostName,
     user: 'root',
-    password: '',
+    password,
     database: 'instagreen',
     charset: 'utf8',
+    port,
   },
 });
 const sequence = require('when/sequence');
