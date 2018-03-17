@@ -42,7 +42,7 @@ class LogIn extends React.Component {
         this.setState({ displayFailurePanel: 'visible-element' });
         setTimeout((() => {
           this.setState({ displayFailurePanel: 'hidden-element' });
-        }).bind(this), 2000);        
+        }).bind(this), 2000);
       }
     });
   }
