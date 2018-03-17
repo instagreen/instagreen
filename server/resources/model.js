@@ -1,4 +1,4 @@
-const { dbHostName, password, port } = require('./config.js');
+const { dbHostName, password, port } = require('./../../db/config.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
