@@ -56,6 +56,7 @@ const controller = {
     // grab media from user
     const file = req.files[0];
     // save it to local uploads!
+    console.log('Im create post');   
     mediaUploader.saveMediaToUploads(file, (mediaFilePath) => {
       // upload it to cloudinary
       mediaUploader.uploadMediaToStorage(mediaFilePath, (storedMediaInfo) => {
@@ -63,7 +64,7 @@ const controller = {
         mediaUploader.removeTempFile(mediaFilePath);
         // get the link to it
         // constructing the post object so it can be stored in the db
-        // afte we received the media url on cloudinary
+        // after we received the media url on cloudinary
         const postBody = {
           description: req.body.description,
           user_id: req.body.user_id,
