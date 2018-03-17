@@ -23,10 +23,10 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-// app.use(favicon(path.join(__dirname, '../client', 'dist', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '../client', 'dist', 'favicon.ico')));
 
 app.use('/instagreen', router);
-app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../client/dist/index.html')));
+// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../client/dist/index.html')));
 
 app.listen(port, () => {
   console.log(`listening on port ${port}!`);
