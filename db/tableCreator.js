@@ -3,12 +3,12 @@ const { dbHostName, password, port } = require('./config.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: dbHostName,
+    host: 'localhost',
     user: 'root',
     password,
     database: 'instagreen',
     charset: 'utf8',
-    port,
+    // port,
   },
 });
 const sequence = require('when/sequence');
