@@ -1,5 +1,5 @@
 // // UNCOMMENT IF NEEDED
-// // const password = require('./config.example.js');
+// const { dbHostName, password, port } = require('./config.js');
 // const mysql = require('mysql');
 
 // module.exports.connection = mysql.createConnection({
@@ -8,12 +8,11 @@
 //   database: 'instagreen',
 //   // password,
 // });
-
+// console.log('this shouldnt show');
 // module.exports.connection = mysql.createConnection({
-//   host: 'localhost',
+//   host: dbHostName,
 //   user: 'root',
 //   database: 'instagreen',
-//   password: '',
-//   // port: 3306,
+//   password,
+//   port,
 // });
-// console.log('this shouldnt show');
