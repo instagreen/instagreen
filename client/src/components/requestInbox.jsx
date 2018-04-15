@@ -28,7 +28,7 @@ class RequestInbox extends React.Component {
   acceptRequest(req) {
     const targetId = this.props.user_id;
     axios.put('/instagreen/follow/', { user_id: req.id, target_id: targetId }).then((success) => {
-      console.log(`request from ${req.username} accepted`, success.data);
+      // console.log(`request from ${req.username} accepted`, success.data);
       axios.get(`/instagreen/follow/${targetId}`).then((response) => {
         this.setState({ requests: response.data });
       });
@@ -38,7 +38,7 @@ class RequestInbox extends React.Component {
   declineRequest(req) {
     const targetId = this.props.user_id;
     axios.delete(`/instagreen/follow/${req.id}/${targetId}`).then((success) => {
-      console.log(`request from ${req.username} declined`, success.data);
+      // console.log(`request from ${req.username} declined`, success.data);
       axios.get(`/instagreen/follow/${targetId}`).then((response) => {
         this.setState({ requests: response.data });
       });

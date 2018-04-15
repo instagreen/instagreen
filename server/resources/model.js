@@ -29,7 +29,6 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
 };
 
 module.exports.handleUpdateProfilePic = (body, callback) => {
-  console.log('body before the update happens', body);
   knex('users')
     .where({ id: body.user_id })
     .update({
@@ -70,7 +69,6 @@ module.exports.getPersonalPosts = (user_id, cb) => { // user_id the owner of the
     .where({user_id})
     .select('*')
     .then((personalPosts) => {
-      console.log('here are the personal posts', personalPosts);
       // hand the personal posts to callback to send them to client
       cb(personalPosts);
     });

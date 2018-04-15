@@ -3,7 +3,6 @@ const axios = require('axios');
 
 // const SERVER = process.env.REST_SERVER;
 const SERVER = 'https://instagreen.herokuapp.com/instagreen';
-console.log('===============>', SERVER);
 
 const apiCaller = {
   getFeed: (user_id, cb) => {

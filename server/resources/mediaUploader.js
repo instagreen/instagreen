@@ -45,7 +45,7 @@ module.exports.saveMediaToUploads = (files, cb) => {
   const dest = fs.createWriteStream(targetPath);
   src.pipe(dest);
   src.on('end', () => { 
-    console.log('im done saving the file');
+    console.log('Done saving the file');
     // remove the temp file and invoke the callback
     removeTempFile(tmpPath);
     cb(targetPath);
