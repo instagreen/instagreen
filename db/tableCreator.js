@@ -59,19 +59,12 @@ const createTables = () => {
       createTable(tableName)
     )
   ));
-  console.log('those should all be promises', tables);
-  console.log('and here is number 0', tables[0]);
   return sequence(tables);
 };
 
 
 const createFks = () => {
   const tables = [];
-
-  // console.log('this better be a promise', knex.schema.table('posts', (posts) => {
-  //   posts.integer('user_id').unsigned();
-  //   posts.foreign('user_id').references('users.id');
-  // }));
 
   tables.push(() => (knex.schema.table('posts', (posts) => {
     posts.integer('user_id').unsigned();
@@ -107,8 +100,6 @@ const createFks = () => {
     user_target_relation.integer('target_id').unsigned();
     user_target_relation.foreign('target_id').references('users.id');
   })));
-  // console.log('2 those should all be promises', tables);
-  // console.log('2 and here is number 0', tables[0]);
   return sequence(tables);
 };
 

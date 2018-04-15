@@ -1,6 +1,4 @@
 const cloudinary = require('cloudinary');
-const { cloudinaryCredentials } = require('./config');
-const path = require('path');
 const fs = require('fs');
 
 // ======================= helpers
