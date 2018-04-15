@@ -1,8 +1,8 @@
 const axios = require('axios');
-require('dotenv/config');
 
-const SERVER = process.env.REST_SERVER;
-// const SERVER = 'https://instagreen.herokuapp.com/instagreen';
+
+// const SERVER = process.env.REST_SERVER;
+const SERVER = 'https://instagreen.herokuapp.com/instagreen';
 console.log('===============>', SERVER);
 
 const apiCaller = {
