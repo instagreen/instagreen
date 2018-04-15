@@ -3,9 +3,9 @@ const knex = require('knex')({ // create the connection
   connection: {
     // host: 'localhost',
     host: 'us-cdbr-iron-east-05.cleardb.net',
-    user: 'b32fc05893b600',
-    password: 'a5c19a01',
-    database: 'heroku_9de0048cdaa7a40',
+    user: 'b10eb618184c08',
+    password: '3c9d47f2',
+    database: 'heroku_6060cc6c8db2b28',
     charset: 'utf8',
   },
 });
