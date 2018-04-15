@@ -1,7 +1,8 @@
 const knex = require('knex')({ // create the connection
   client: 'mysql',
   connection: {
-    host: 'localhost',
+    // host: 'localhost',
+    host: 'https://instagreen.herokuapp.com/',
     user: 'root',
     password: '',
     database: 'instagreen',

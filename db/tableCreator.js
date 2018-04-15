@@ -3,7 +3,8 @@ const { password } = require('./config.example.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
+    // host: 'localhost',
+    host: 'https://instagreen.herokuapp.com/',
     user: 'root',
     password,
     database: 'instagreen',

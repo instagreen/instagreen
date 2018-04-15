@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js",
+    "server-dev": "node server/index.js",
     "build-db": "node ./db/tableCreator.js && mysql -u root < ./db/foreignKeyCreator.sql",
+    "build": "npm-run-all -p build-db react-dev",
+    "start": "npm-run-all -s build server-dev",
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql"
   },
@@ -48,6 +50,7 @@
     "multer": "^1.3.0",
     "mysql": "^2.15.0",
     "nodemon": "^1.15.1",
+    "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dropzone-component": "^3.1.2",
