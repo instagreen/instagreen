@@ -1,6 +1,5 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
+const axios = require('axios');
+require('dotenv/config');
 
 const SERVER = process.env.REST_SERVER;
 // const SERVER = 'https://instagreen.herokuapp.com/instagreen';
