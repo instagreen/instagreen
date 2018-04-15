@@ -9,7 +9,7 @@
     "server-dev": "node server/index.js",
     "build-db": "node ./db/tableCreator.js && mysql --host=us-cdbr-iron-east-05.cleardb.net --user=b072f94880df8d --password=66d6b4f1 < ./db/foreignKeyCreator.sql",
     "build": "npm-run-all -p build-db react-dev",
-    "start": "npm-run-all -s build server-dev",
+    "start": "npm-run-all -s server-dev",
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql"
   },
