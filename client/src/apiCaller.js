@@ -1,6 +1,9 @@
-import axios from 'axios';
+const axios = require('axios');
 
-const SERVER = 'http://localhost:3000/instagreen';
+
+// const SERVER = process.env.REST_SERVER;
+const SERVER = 'https://instagreen.herokuapp.com/instagreen';
+console.log('===============>', SERVER);
 
 const apiCaller = {
   getFeed: (user_id, cb) => {

@@ -1,6 +1,4 @@
 const cloudinary = require('cloudinary');
-const { cloudinaryCredentials } = require('./config');
-const path = require('path');
 const fs = require('fs');
 
 // ======================= helpers
@@ -19,7 +17,6 @@ const removeTempFile = (tempFilePath, cb) => {
 // ======================= media saver
 
 module.exports.saveMediaToUploads = (files, cb) => {
-  // console.log('-----> File for reals ', files);
   // example of files[0]
   // {
   //   fieldname: '',
@@ -58,11 +55,7 @@ module.exports.saveMediaToUploads = (files, cb) => {
 
 // ======================= media uploaders to cloudinary
 
-cloudinary.config({ // cloudinary setup and configuration
-  cloud_name: cloudinaryCredentials.name,
-  api_key: cloudinaryCredentials.apiKey,
-  api_secret: cloudinaryCredentials.apiSecret,
-});
+cloudinary.config(process.env.CLOUDINARY_URL);
 
 // upload media to cloudinary storage
 module.exports.uploadMediaToStorage = (filePath, callback) => {
