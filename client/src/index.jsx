@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import App from './components/app.jsx';
 import Explore from './components/explore.jsx';
 import Profile from './components/profile.jsx';
