@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "react-dev": "webpack -d --watch",
+    "react-dev": "webpack -d",
     "server-dev": "node server/index.js",
     "build-db": "node ./db/tableCreator.js && mysql --host=us-cdbr-iron-east-05.cleardb.net --user=b072f94880df8d --password=66d6b4f1 < ./db/foreignKeyCreator.sql",
     "build": "npm-run-all -p build-db react-dev",
