@@ -58,11 +58,7 @@ module.exports.saveMediaToUploads = (files, cb) => {
 
 // ======================= media uploaders to cloudinary
 
-cloudinary.config({ // cloudinary setup and configuration
-  cloud_name: cloudinaryCredentials.name,
-  api_key: cloudinaryCredentials.apiKey,
-  api_secret: cloudinaryCredentials.apiSecret,
-});
+cloudinary.config(process.env.CLOUDINARY_URL);
 
 // upload media to cloudinary storage
 module.exports.uploadMediaToStorage = (filePath, callback) => {
