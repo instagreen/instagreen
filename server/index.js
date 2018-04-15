@@ -6,7 +6,7 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const { router } = require('./resources/instagreenRouter');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(logger('tiny'));

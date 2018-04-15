@@ -5,7 +5,6 @@ import router from '../clientRouter.jsx';
 const NavBar = () => {
   const doLogOut = () => {
     axios.get('/instagreen/logout').then((response) => {
-      console.log(response);
       router.setRoute('app');
     });
   };

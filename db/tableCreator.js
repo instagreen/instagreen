@@ -1,12 +1,14 @@
 const { Schema } = require('./schema');
-const { password } = require('./config.example.js');
+require('dotenv/config');
+
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
-    user: 'root',
-    password,
-    database: 'instagreen',
+    // host: 'localhost',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     charset: 'utf8',
   },
 });
@@ -59,12 +61,67 @@ const createTables = () => {
   ));
   return sequence(tables);
 };
+
+
+const createFks = () => {
+  const tables = [];
+
+  tables.push(() => (knex.schema.table('posts', (posts) => {
+    posts.integer('user_id').unsigned();
+    posts.foreign('user_id').references('users.id');
+  })));
+
+  tables.push(() => (knex.schema.table('comments', (comments) => {
+    comments.integer('user_id').unsigned();
+    comments.foreign('user_id').references('users.id');
+  })));
+
+  tables.push(() => (knex.schema.table('comments', (comments) => {
+    comments.integer('post_id').unsigned();
+    comments.foreign('post_id').references('posts.id');
+  })));
+
+  tables.push(() => (knex.schema.table('likes', (likes) => {
+    likes.integer('post_id').unsigned();
+    likes.foreign('post_id').references('posts.id');
+  })));
+
+  tables.push(() => (knex.schema.table('likes', (likes) => {
+    likes.integer('user_id').unsigned();
+    likes.foreign('user_id').references('users.id');
+  })));
+
+  tables.push(() => (knex.schema.table('user_target_relation', (user_target_relation) => {
+    user_target_relation.integer('user_id').unsigned();
+    user_target_relation.foreign('user_id').references('users.id');
+  })));
+
+  tables.push(() => (knex.schema.table('user_target_relation', (user_target_relation) => {
+    user_target_relation.integer('target_id').unsigned();
+    user_target_relation.foreign('target_id').references('users.id');
+  })));
+  return sequence(tables);
+};
+
 createTables()
   .then(() => {
     console.log('Tables created!!');
-    process.exit(0);
+    createFks()
+      .then(() => {
+        console.log('Associations created!');
+        process.exit(0);
+      })
+      .catch((error) => {
+        console.log('error while creating associations', error);
+        process.exit();
+      });
   })
   .catch((error) => {
-    console.log('is it here');
-    throw error;
+    console.log('error while creating tables', error);
+    process.exit();
   });
+
+// fkSqls.forEach((fksql) => {
+//   knex.schema.raw(fksql);
+// });
+

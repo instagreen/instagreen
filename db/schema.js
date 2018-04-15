@@ -1,6 +1,6 @@
 const Schema = {
   users: { // table
-    id: { // field
+    id: { // column
       type: 'increments',
       nullable: false,
       primary: true,
