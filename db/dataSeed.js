@@ -2,10 +2,10 @@ const knex = require('knex')({ // create the connection
   client: 'mysql',
   connection: {
     // host: 'localhost',
-    host: 'https://instagreen.herokuapp.com/',
-    user: 'root',
-    password: '',
-    database: 'instagreen',
+    host: 'us-cdbr-iron-east-05.cleardb.net',
+    user: 'b072f94880df8d',
+    password: '66d6b4f1',
+    database: 'heroku_267032ea6cb23cc',
     charset: 'utf8',
   },
 });
