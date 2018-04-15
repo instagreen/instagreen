@@ -1,10 +1,11 @@
 const knex = require('knex')({ // create the connection
   client: 'mysql',
   connection: {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'instagreen',
+    // host: 'localhost',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     charset: 'utf8',
   },
 });
@@ -21,7 +22,7 @@ const insertDummyDataForFeed = () => {
       username: randomUserName, password: '', follower_count: 0, following_count: 0,
     })
       .then(() => {
-        knex('posts').insert({ 
+        knex('posts').insert({
           user_id: index + 1,
           likes_count: 0,
           description: `hi ${index}`,
@@ -41,12 +42,12 @@ const insertDummyDataForFeed = () => {
 const insertDummyDataForProfile = () => {
   for (let index = 0; index < 3; index += 1) {
     knex('posts').insert({
-      likes_count : index + 1,
+      likes_count: index + 1,
       description: `hi ${index}`,
       imgUrl: `img ${index}`,
       user_id: 1,
     }).then(() => {
-      console.log( 'done inserting posts');
+      console.log('done inserting posts');
     });
   }
 };
