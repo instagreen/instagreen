@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "react-dev": "webpack -d",
-    "server-dev": "node server/index.js",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/bin/index.js",
+    "react":"webpack -d",
+    "server":"node server/bin/index.js",
     "build-db": "node ./db/tableCreator.js",
     "build": "npm-run-all -p build-db react-dev",
-    "start": "node server/bin/index.js",
+    "start": "npm-run-all -p server react",
     "seed-data": "node ./db/dataSeed.js",
     "test-data": "mysql -u root < ./db/testDataSeeder.sql"
   },
