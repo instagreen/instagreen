@@ -128,7 +128,6 @@ module.exports.handleNewLike = (body, callback) => {
 };
 
 module.exports.handleRemoveLike = (body, callback) => {
-  console.log(body);
   knex('likes')
     .where({
       user_id: body.user_id,
