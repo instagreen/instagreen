@@ -1,5 +1,4 @@
 const { Schema } = require('./schema');
-const { fkSqls } = require('./fkCreator.js');
 require('dotenv/config');
 
 const knex = require('knex')({
