@@ -17,7 +17,6 @@ const removeTempFile = (tempFilePath, cb) => {
 // ======================= media saver
 
 module.exports.saveMediaToUploads = (files, cb) => {
-  // console.log('-----> File for reals ', files);
   // example of files[0]
   // {
   //   fieldname: '',
