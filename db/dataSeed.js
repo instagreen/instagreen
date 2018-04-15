@@ -1,11 +1,15 @@
+const {
+  password, user, host, database,
+} = require('./config.js');
+
 const knex = require('knex')({ // create the connection
   client: 'mysql',
   connection: {
     // host: 'localhost',
-    host: 'us-cdbr-iron-east-05.cleardb.net',
-    user: 'b10eb618184c08',
-    password: '3c9d47f2',
-    database: 'heroku_6060cc6c8db2b28',
+    host,
+    user,
+    password,
+    database,
     charset: 'utf8',
   },
 });
