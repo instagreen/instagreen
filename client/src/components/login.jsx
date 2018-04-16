@@ -35,14 +35,14 @@ class LogIn extends React.Component {
         this.setState({ displayFailurePanel: 'visible-element' });
         setTimeout((() => {
           this.setState({ displayFailurePanel: 'hidden-element' });
-        }).bind(this), 2000);
+        }), 2000);
         router.setRoute('login');
       } else {
         this.setState({ invalidUsernamePasswordError: 'username' });
         this.setState({ displayFailurePanel: 'visible-element' });
         setTimeout((() => {
           this.setState({ displayFailurePanel: 'hidden-element' });
-        }).bind(this), 2000);        
+        }), 2000);
       }
     });
   }
@@ -58,7 +58,7 @@ class LogIn extends React.Component {
         this.setState({ displaySuccessPanel: 'visible-element' });
         setTimeout((() => {
           this.setState({ displaySuccessPanel: 'hidden-element' });
-        }).bind(this), 2000);
+        }), 2000);
       } else {
         this.setState({ signupAlertMessage: 'Username already taken.' });
         this.setState({ bootstrapClassStatusType: 'alert-danger' });
@@ -66,7 +66,7 @@ class LogIn extends React.Component {
         this.setState({ displaySuccessPanel: 'visible-element' });
         setTimeout((() => {
           this.setState({ displaySuccessPanel: 'hidden-element' });
-        }).bind(this), 2000);        
+        }), 2000);
       }
     });
   }
@@ -83,7 +83,7 @@ class LogIn extends React.Component {
     if (this.state.currentComponent === 'login') {
       return (
         <div id="parent" align="center">
-        <p className={`alert login-message alert-danger alert-operation ${this.state.displayFailurePanel}`}>Invalid {this.state.invalidUsernamePasswordError}! #PackYourBags</p>
+          <p className={`alert login-message alert-danger alert-operation ${this.state.displayFailurePanel}`}>Invalid {this.state.invalidUsernamePasswordError}! #PackYourBags</p>
           <div>
             <h2 id="header">Instagreen</h2>
           </div>

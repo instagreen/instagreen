@@ -1,11 +1,11 @@
-const { password } = require('../../db/config.example.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
-    user: 'root',
-    password,
-    database: 'instagreen',
+    // host: 'localhost',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     charset: 'utf8',
   },
   useNullAsDefault: true,
@@ -29,7 +29,6 @@ module.exports.getFeed = (user_id, cb) => { // user_id the owner of the profile
 };
 
 module.exports.handleUpdateProfilePic = (body, callback) => {
-  console.log('body before the update happens', body);
   knex('users')
     .where({ id: body.user_id })
     .update({
@@ -70,7 +69,6 @@ module.exports.getPersonalPosts = (user_id, cb) => { // user_id the owner of the
     .where({user_id})
     .select('*')
     .then((personalPosts) => {
-      console.log('here are the personal posts', personalPosts);
       // hand the personal posts to callback to send them to client
       cb(personalPosts);
     });
@@ -130,7 +128,6 @@ module.exports.handleNewLike = (body, callback) => {
 };
 
 module.exports.handleRemoveLike = (body, callback) => {
-  console.log(body);
   knex('likes')
     .where({
       user_id: body.user_id,
