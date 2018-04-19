@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
+const httpsRedirect = require('express-https-redirect');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const { router } = require('./resources/instagreenRouter');
@@ -17,9 +18,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 300000, 
+    expires: 300000,
   },
 }));
+
+app.use('/', httpsRedirect());
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
